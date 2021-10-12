@@ -61,14 +61,14 @@ def get_post_info(keyword: str, start_date: str, end_date: str, pages: int) -> p
     return total_header, total_contents, total_date
 
 
-pages = int(input("몇 페이지 까지 크롤링 할까요? \n => "))
+# pages = int(input("몇 페이지 까지 크롤링 할까요? \n => "))
 keyword = input("검색하실 키워드를 입력해주세요 \n =>")
-start_date = input("검색 시작일을 입력해주세요 ex) 2000-01-01 \n =>")
-end_date = input("검색 종료일을 입력해주세요 ex) 2000-01-01 \n =>")
-# keyword = "이천 여행"
-# start_date = '2012-12-12'
-# end_date = '2013-12-12'
-# pages = 12
+# start_date = input("검색 시작일을 입력해주세요 ex) 2000-01-01 \n =>")
+# end_date = input("검색 종료일을 입력해주세요 ex) 2000-01-01 \n =>")
+
+pages = 150
+start_date = '2020-01-01'
+end_date = '2021-10-11'
 
 total_header, total_contents, total_date = get_post_info(keyword, start_date, end_date, pages)
 data = {"header": total_header, "contents": total_contents, "date": total_date}
