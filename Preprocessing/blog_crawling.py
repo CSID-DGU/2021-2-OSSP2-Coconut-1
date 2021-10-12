@@ -14,7 +14,7 @@ def get_post_info(keyword: str, start_date: str, end_date: str, pages: int) -> p
 
     total_date = []
     # chromedriver path
-    driver = webdriver.Chrome("./2021-2-OSSP2-Coconut-1/Preprocessing/Driver/chromedriver.exe")
+    driver = webdriver.Chrome("./2021-2-OSSP2-Coconut-1/Preprocessing/Driver/chromedriver_94.exe")
 
 
     for j in range(1, pages + 1):
@@ -76,4 +76,4 @@ data = {"header": total_header, "contents": total_contents, "date": total_date}
 df = pd.DataFrame(data, columns=["header", "contents", "date"])
 keyword = keyword[:-3].split()
 title = keyword[0]+"_"+keyword[1]+".csv"
-df.to_csv(title, index=False, encoding='utf-8-sig')
+df.to_csv("./2021-2-OSSP2-Coconut-1/Preprocessing/Blog_Crawling_Data/"+title, index=False, encoding='utf-8-sig')
