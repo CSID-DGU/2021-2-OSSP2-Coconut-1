@@ -2,7 +2,7 @@
 
     $db_host = "localhost"; 
     $db_user = "osspcoconut"; 
-    $db_passwd = "coconut1!";
+    $db_passwd = "";
     $db_name = "osspcoconut";
 
     // MySQL - DB 접속.
