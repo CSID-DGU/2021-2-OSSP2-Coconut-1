@@ -1,8 +1,11 @@
 import json, requests 
 
-url = requests.get("osspcoconut.dothome.co.kr/get_Json.php")
+url = requests.get("http://osspcoconut.dothome.co.kr/get_Json.php")
 text = url.text
-print(text)
 data = json.loads(text)
+for i in data:
+    print(i)
 
-print(data[0])
+"""
+osspcoconut.dothome.co.kr/get_Json.php내에서 json 형식으로 출력된 DB 값을 받아서 출력한다.
+"""
