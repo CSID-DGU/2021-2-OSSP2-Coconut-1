@@ -48,17 +48,48 @@
         height:30
 
 <MainScreen>:
+    name: 'main'
+    GridLayout:
+        cols:2
+        Spinner:
+            id: main_drop
+            size_hint: None, None
+            size: 200, 100
+            pos_hint:{'top': 1}
+            text: 'Select City'
+            values: root.values_dict.keys()
+            on_text:
+                root.values_update(self.text)
+
+        Spinner:
+            id: sub_drop
+            size_hint: None, None
+            size: 230, 100
+            pos_hint:{'top': 1}
+            values: root.sub_values
+            
+
+
     FloatLayout:
         Button:
             size_hint: (0.3, 0.1)
             pos_hint: {'center_x': 0.8, 'center_y': 0.1}
-            text: "test1"
+            text: "Submit"
             on_press: root.convert2r()
 
-<ResultScreeen>:
     FloatLayout:
         Button:
             size_hint: (0.3, 0.1)
-            pos_hint: {'center_x': 0.5, 'center_y': 0.1}
-            text: "back to test1"
-            on_press: root.convert2s()
+            pos_hint: {'center_x': 0.2, 'center_y': 0.1}
+            text: "Exit"
+            on_press: root.onExit()
+    
+
+<ResultScreen>:
+    name : 'result'
+    FloatLayout:
+        Button:
+            size_hint: (0.3, 0.1)
+            pos_hint: {'center_x': 0.8, 'center_y': 0.1}
+            text: "Back to Main"
+            on_press: root.convert2m()

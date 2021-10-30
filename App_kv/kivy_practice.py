@@ -36,13 +36,19 @@ class Screen1(Screen):
         sm.current = 'main'
 
 class Screen2(Screen):
-    pass
+    def open_screen(self):        
+        sm = self.manager
+        sm.current = 'main'
 
 class Screen3(Screen):
-    pass
+    def open_screen(self):        
+        sm = self.manager
+        sm.current = 'main'
 
 class Screen4(Screen):
-    pass
+    def open_screen(self):        
+        sm = self.manager
+        sm.current = 'main'
 
 class appln(App):                
     def build(self):    
