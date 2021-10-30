@@ -18,13 +18,7 @@ kv_file = 'test11.kv'
 Builder.load_file(join(dirname(__file__), kv_file)) 
 
 
-class CityDropDown(DropDown):
-    pass
-
-class StateDropDown(DropDown):
-    pass
-
-class NoneDropDown(DropDown):
+class TourismResource(DropDown):
     pass
 
 class windowManager(ScreenManager):
@@ -48,7 +42,7 @@ class MainScreen(Screen):
     
     def values_update(self,text):
         self.sub_values = self.values_dict[text]
-        if text != 'Select group type':
+        if text != 'Select City':
             self.ids.sub_drop.text = text
             
 
