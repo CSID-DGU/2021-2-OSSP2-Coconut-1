@@ -1,0 +1,64 @@
+<CityDropDown>:
+    Button:
+        text: '111'
+        size_hint_y: None
+        height: 30
+        on_release: root.select('111')
+    Label:
+        text: 'Not in college'
+        size_hint_y: None
+        height: 30
+    Button:
+        text: '222'
+        size_hint_y: None
+        height: 30
+        on_release: root.select('222')
+    Button:
+        text: '333'
+        size_hint_y: None
+        height: 30
+        on_release: root.select('333')
+
+
+<StateDropDown>:
+    Button:
+        text: 'aaa'
+        size_hint_y: None
+        height: 30
+        on_release: root.select('aaa')
+    Label:
+        text: 'Not in college'
+        size_hint_y: None
+        height: 30
+    Button:
+        text: 'bbb'
+        size_hint_y: None
+        height: 30
+        on_release: root.select('bbb')
+    Button:
+        text: 'ccc'
+        size_hint_y: None
+        height: 30
+        on_release: root.select('ccc')
+
+<NoneDropDown>:
+    Label:
+        text: 'Nothing'
+        size_hint_y:None
+        height:30
+
+<MainScreen>:
+    FloatLayout:
+        Button:
+            size_hint: (0.3, 0.1)
+            pos_hint: {'center_x': 0.8, 'center_y': 0.1}
+            text: "test1"
+            on_press: root.convert2r()
+
+<ResultScreeen>:
+    FloatLayout:
+        Button:
+            size_hint: (0.3, 0.1)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.1}
+            text: "back to test1"
+            on_press: root.convert2s()
