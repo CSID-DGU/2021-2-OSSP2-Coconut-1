@@ -1,3 +1,7 @@
+<windowManager>:
+    MainScreen:
+    ResultScreen:
+
 <MainScreen>:
     name: 'main'
     GridLayout:
@@ -36,8 +40,6 @@
 
 <ResultScreen>:
     name: 'result'
-
-
     FloatLayout:
         Button:
             size_hint: (0.3, 0.1)
@@ -45,7 +47,14 @@
             text: "Back to Main"
             on_press: root.convert2m()
 
+        Spinner:
+            id: resource
+            size_hint: None, None
+            size: 200, 50
+            pos_hint:{'top': 1}
+            text: 'Select Resource'
+            values: ["mountain", "ocean", "museum"]
 
 
-<TourismResoure>:
-    name: 'resource'
+
+

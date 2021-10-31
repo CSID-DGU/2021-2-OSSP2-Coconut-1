@@ -18,9 +18,6 @@ kv_file = 'test11.kv'
 Builder.load_file(join(dirname(__file__), kv_file)) 
 
 
-class TourismResource(DropDown):
-    pass
-
 class windowManager(ScreenManager):
     pass
 
@@ -47,9 +44,13 @@ class MainScreen(Screen):
             
 
 class ResultScreen(Screen):
+    def __init__(self, **kwargs):
+        super(ResultScreen, self).__init__(**kwargs)
+
     def convert2m(self):
         sm = self.manager
         sm.current = 'main'
+
 
 sm = ScreenManager() # transition = NoTransition())
 sm.add_widget(MainScreen())
@@ -59,7 +60,5 @@ class MainApp(App):
     def build(self):
         return sm
 
-
 if __name__ == '__main__':
     MainApp().run()
-    #TestApp().run()
