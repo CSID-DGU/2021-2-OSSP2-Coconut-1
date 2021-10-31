@@ -25,8 +25,8 @@ class MainScreen(Screen):
     def __init__(self, **kwargs):
         super(MainScreen, self).__init__(**kwargs)
 
-    values_dict = {'aaa':['111', '222', '333'],
-              'bbb':['444', '555', '666']}
+    values_dict = {'City1':['StateA', 'StateB', 'StateC'],
+              'City2':['StateD', 'StateE', 'StateF']}
 
     sub_values = ListProperty()
 
@@ -47,6 +47,8 @@ class ResultScreen(Screen):
     def __init__(self, **kwargs):
         super(ResultScreen, self).__init__(**kwargs)
 
+    resource_value = ["mountain", "ocean", "museum"]
+    
     def convert2m(self):
         sm = self.manager
         sm.current = 'main'

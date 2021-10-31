@@ -2,10 +2,17 @@
     MainScreen:
     ResultScreen:
 
+
 <MainScreen>:
     name: 'main'
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: "testlogo.jpg"
     GridLayout:
         cols:2
+        pos_hint: {"top": 0.85, "right": 1.25}
         Spinner:
             id: main_drop
             size_hint: None, None
@@ -29,8 +36,7 @@
             pos_hint: {'center_x': 0.8, 'center_y': 0.1}
             text: "Submit"
             on_press: root.convert2r()
-
-    FloatLayout:
+            
         Button:
             size_hint: (0.3, 0.1)
             pos_hint: {'center_x': 0.2, 'center_y': 0.1}
@@ -40,10 +46,117 @@
 
 <ResultScreen>:
     name: 'result'
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: "testlogo.jpg"
+    GridLayout:
+        rows: 5
+        size_hint: 1, 0.55
+        pos_hint: {"top": 0.8, "right": 1}
+        GridLayout:
+            cols: 2
+            Label:
+                canvas.before:
+                    Color:
+                        rgba: 0.2, 0.2, 0.2, 0.8
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                text: "First Recommend"
+            Label:
+                canvas.before:
+                    Color:
+                        rgba: 0.2, 0.2, 0.2, 0.5
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                size_hint: 2, 0.8
+                text: "Recommend Text1"
+        GridLayout:
+            cols: 2
+            Label:
+                canvas.before:
+                    Color:
+                        rgba: 0.2, 0.2, 0.2, 0.6
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                text: "Second Recommend"
+            Label:
+                canvas.before:
+                    Color:
+                        rgba: 0.2, 0.2, 0.2, 0.5
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                size_hint: 2, 0.8
+                text: "Recommend Text2"
+        GridLayout:
+            cols: 2        
+            Label:
+                canvas.before:
+                    Color:
+                        rgba: 0.2, 0.2, 0.2, 0.8
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                text: "Third Recommend"
+            Label:
+                canvas.before:
+                    Color:
+                        rgba: 0.2, 0.2, 0.2, 0.5
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                size_hint: 2, 0.8
+                text: "Recommend Text3"
+        
+        GridLayout:
+            cols: 2 
+            Label:
+                canvas.before:
+                    Color:
+                        rgba: 0.2, 0.2, 0.2, 0.5
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                text: "Fourth Recommend"
+            Label:
+                canvas.before:
+                    Color:
+                        rgba: 0.2, 0.2, 0.2, 0.5
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                size_hint: 2, 0.8
+                text: "Recommend Text4"
+
+        GridLayout:
+            cols: 2 
+            Label:
+                canvas.before:
+                    Color:
+                        rgba: 0.2, 0.2, 0.2, 0.8
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                text: "Fifth Recommend"
+            Label:
+                canvas.before:
+                    Color:
+                        rgba: 0.2, 0.2, 0.2, 0.5
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                size_hint: 2, 0.8
+                text: "Recommend Text5"
+
     FloatLayout:
         Button:
             size_hint: (0.3, 0.1)
-            pos_hint: {'center_x': 0.8, 'center_y': 0.1}
+            pos_hint: {'center_x': 0.5, 'center_y': 0.1}
             text: "Back to Main"
             on_press: root.convert2m()
 
@@ -51,9 +164,9 @@
             id: resource
             size_hint: None, None
             size: 200, 50
-            pos_hint:{'top': 1}
+            pos_hint:{'top': 0.95, 'right': 0.6}
             text: 'Select Resource'
-            values: ["mountain", "ocean", "museum"]
+            values: root.resource_value
 
 
 
