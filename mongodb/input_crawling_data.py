@@ -1,6 +1,6 @@
 import pymongo as pm
 import pandas as pd
-
+import certifi
 
 region_list=['서울_종로구',
 '서울_중구',
@@ -235,19 +235,18 @@ region_list=['서울_종로구',
 '제주도_서귀포시']
 
 #클라이언트 연결
-client = pm.MongoClient("mongodb+srv://OSSPCOCONUT:coconut1!@cluster0.3vu4p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+client = pm.MongoClient('mongodb+srv://OSSPCOCONUT:coconut123@ossp-cluster.3vu4p.mongodb.net/test?retryWrites=true&w=majority', tlsCAFile=certifi.where())
 
 for region in region_list:
     #지역 데이터프레임생성
     data = pd.read_csv("./2021-2-OSSP2-Coconut-1/Preprocessing/Crawling/Blog_Crawling_Data/" + region + ".csv")
-    
+    print(region+" 삽입중")
     #해당지역 DB와 collection 생성
     db = client["crawling_data"]
     col = db[region]
 
     #해당지역 크롤링 데이터 DB에 삽입
     for row in range(len(data)):
-        print(row)
         insert_data = {'header':str(data.iloc[row,0]), "contents":str(data.iloc[row,1]), "date":str(data.iloc[row,2])}
         col.insert_one(insert_data)
 client.close()
