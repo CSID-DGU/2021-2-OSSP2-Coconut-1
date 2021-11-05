@@ -80,9 +80,9 @@ for region in region_list:
 
     total_header, total_contents, total_date = get_post_info(keyword, start_date, end_date, pages)
 
-    for data in zip(total_header,total_contents,total_date):
+    for row_data in zip(total_header, total_contents, total_date):
 
-    data = {"header": total_header, "contents": total_contents, "date": total_date}
+        data = {"header": total_header, "contents": total_contents, "date": total_date}
     df = pd.DataFrame(data, columns=["header", "contents", "date"])
     keyword = keyword[:-3].split()
     title = keyword[0]+"_"+keyword[1]+".csv"
