@@ -4,8 +4,8 @@ import certifi
 import time
 import selenium
 from selenium import webdriver
+import datetime
 import regions
-from datetime import datetime
 
 def get_post_info(keyword: str, start_date: str, end_date: str, pages: int) -> pd.DataFrame:
     total_header = []
@@ -66,24 +66,36 @@ client = pm.MongoClient('mongodb+srv://OSSPCOCONUT:coconut123@ossp-cluster.3vu4p
 
 #지역별 업데이트
 for region in region_list:
+
+    print(region+" 업데이트중")
+
     db = client["crawling_data"]
     col = db[region]
     
     s = region.split('_')
     keyword = s[0] + " " + s[1] + " " + "여행"
-    pages = 150
 
-    ealiest_date=col.find({'date':1}).sort({'date',-1})[0]
+    #데이터중 가장 최신 데이터의 날짜에서 하루 더한값을 검색 시작일로 지정
+    latest_date = col.find({},{'date':1}).sort('date',-1)[0]['date'].split('.')
+    start_date = (datetime.date(int(latest_date[0]), int(latest_date[1]), int(latest_date[2]))+datetime.timedelta(days=1)).isoformat()
 
-    start_date = '2020-01-01'
-    end_date = '2021-10-11'
+    #업데이트 되는 날짜를 검색 종료일로 지정
+    end_date = datetime.datetime.now().strftime("%Y-%m-%d")
 
+    #업데이트 데이터는 이전 기록과 섞이게 하기위해 1/5인 200개로 제한 
+    pages = 200
+
+    #크롤링
     total_header, total_contents, total_date = get_post_info(keyword, start_date, end_date, pages)
 
+    overlap_check={}
+    #데이터 삽입
     for row_data in zip(total_header, total_contents, total_date):
-
-        data = {"header": total_header, "contents": total_contents, "date": total_date}
-    df = pd.DataFrame(data, columns=["header", "contents", "date"])
-    keyword = keyword[:-3].split()
-    title = keyword[0]+"_"+keyword[1]+".csv"
-    df.to_csv("./2021-2-OSSP2-Coconut-1/Preprocessing/Crawling/Blog_Crawling_Data/"+title, index=False, encoding='utf-8-sig')
+        if row_data[0] == " ":
+            break
+        elif row_data[0] in overlap_check:
+            continue
+        else:
+            overlap_check[row_data[0]] = 0
+        insert_data = {'header':str(row_data[0]), "contents":str(row_data[1]), "date":str(row_data[2])}
+        col.insert_one(insert_data)

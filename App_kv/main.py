@@ -53,10 +53,28 @@ class ResultScreen(Screen):
         sm = self.manager
         sm.current = 'main'
 
+    def convert2t(self):
+        sm = self.manager
+        sm.current = 'third'
+
+
+class ThirdScreen(Screen):
+    def __init__(self, **kwargs):
+        super(ThirdScreen, self).__init__(**kwargs)
+
+    def convert2m(self):
+        sm = self.manager
+        sm.current = 'main'
+
+    def convert2r(self):
+        sm = self.manager
+        sm.current = 'result'
+
 
 sm = ScreenManager() # transition = NoTransition())
 sm.add_widget(MainScreen())
 sm.add_widget(ResultScreen())
+sm.add_widget(ThirdScreen())
        
 class MainApp(App):
     def build(self):

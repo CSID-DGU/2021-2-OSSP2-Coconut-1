@@ -53,105 +53,62 @@
             source: "testlogo.jpg"
     GridLayout:
         rows: 5
-        size_hint: 1, 0.55
-        pos_hint: {"top": 0.8, "right": 1}
-        GridLayout:
-            cols: 2
-            Label:
-                canvas.before:
-                    Color:
-                        rgba: 0.2, 0.2, 0.2, 0.8
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
-                text: "First Recommend"
-            Label:
-                canvas.before:
-                    Color:
-                        rgba: 0.2, 0.2, 0.2, 0.5
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
-                size_hint: 2, 0.8
-                text: "Recommend Text1"
-        GridLayout:
-            cols: 2
-            Label:
-                canvas.before:
-                    Color:
-                        rgba: 0.2, 0.2, 0.2, 0.6
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
-                text: "Second Recommend"
-            Label:
-                canvas.before:
-                    Color:
-                        rgba: 0.2, 0.2, 0.2, 0.5
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
-                size_hint: 2, 0.8
-                text: "Recommend Text2"
-        GridLayout:
-            cols: 2        
-            Label:
-                canvas.before:
-                    Color:
-                        rgba: 0.2, 0.2, 0.2, 0.8
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
-                text: "Third Recommend"
-            Label:
-                canvas.before:
-                    Color:
-                        rgba: 0.2, 0.2, 0.2, 0.5
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
-                size_hint: 2, 0.8
-                text: "Recommend Text3"
-        
-        GridLayout:
-            cols: 2 
-            Label:
-                canvas.before:
-                    Color:
-                        rgba: 0.2, 0.2, 0.2, 0.5
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
-                text: "Fourth Recommend"
-            Label:
-                canvas.before:
-                    Color:
-                        rgba: 0.2, 0.2, 0.2, 0.5
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
-                size_hint: 2, 0.8
-                text: "Recommend Text4"
+        size_hint: 0.5, 0.55
+        pos_hint: {"top": 0.8, "right": 0.5}
+        Button:
+            canvas.before:
+                Color:
+                    rgba: 0.2, 0.2, 0.2, 0.8
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            text: "First Recommend ->"
+            display: None
+            on_press: root.convert2t()
 
-        GridLayout:
-            cols: 2 
-            Label:
-                canvas.before:
-                    Color:
-                        rgba: 0.2, 0.2, 0.2, 0.8
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
-                text: "Fifth Recommend"
-            Label:
-                canvas.before:
-                    Color:
-                        rgba: 0.2, 0.2, 0.2, 0.5
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
-                size_hint: 2, 0.8
-                text: "Recommend Text5"
+        Button:
+            canvas.before:
+                Color:
+                    rgba: 0.2, 0.2, 0.2, 0.8
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            text: "Second Recommend ->"
+            display: None
+            on_press: root.convert2t()    
+
+        Button:
+            canvas.before:
+                Color:
+                    rgba: 0.2, 0.2, 0.2, 0.8
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            text: "Third Recommend ->"
+            display: None
+            on_press: root.convert2t() 
+
+        Button:
+            canvas.before:
+                Color:
+                    rgba: 0.2, 0.2, 0.2, 0.8
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            text: "Fourth Recommend ->"
+            display: None
+            on_press: root.convert2t() 
+
+        Button:
+            canvas.before:
+                Color:
+                    rgba: 0.2, 0.2, 0.2, 0.8
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            text: "Fifth Recommend ->"
+            display: None
+            on_press: root.convert2t() 
 
     FloatLayout:
         Button:
@@ -169,5 +126,50 @@
             values: root.resource_value
 
 
+<ThirdScreen>:
+    name:'third'
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: "testlogo.jpg"
+
+
+    FloatLayout:
+        Label:
+            canvas.before:
+                Color:
+                    rgba: 0.2, 0.2, 0.2, 0.8
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            text: "City-State"
+            size_hint: 1, 0.1
+            pos_hint: {'top':1, 'right': 1}
+
+        Label:
+            canvas.before:
+                Color:
+                    rgba: 0.2, 0.2, 0.2, 0.8
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            text:'About Tour'
+            size_hint: 1, 0.6
+            pos_hint: {'right':1}
+
+        Button:
+            background_color: (0.2, 0.5, 0.8, 0.5)
+            text:'Back to Main'
+            size_hint:(0.3, 0.1)
+            pos_hint: {'center_x': 0.8, 'center_y': 0.1}
+            on_press: root.convert2m()
+
+        Button:
+            background_color: (0.2, 0.5, 0.8, 0.3)
+            text:'Back to Main'
+            size_hint:(0.3, 0.1)
+            pos_hint: {'center_x': 0.8, 'center_y': 0.2}
+            on_press: root.convert2r() 
 
 
