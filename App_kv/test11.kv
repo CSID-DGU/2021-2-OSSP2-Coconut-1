@@ -16,7 +16,7 @@
         Spinner:
             id: main_drop
             size_hint: None, None
-            size: 200, 50
+            size: 180, 50
             pos_hint:{'top': 1}
             text: 'Select City'
             values: root.values_dict.keys()
@@ -26,7 +26,7 @@
         Spinner:
             id: sub_drop
             size_hint: None, None
-            size: 230, 50
+            size: 180, 50
             pos_hint:{'top': 1}
             values: root.sub_values
             
@@ -51,10 +51,48 @@
             pos: self.pos
             size: self.size
             source: "testlogo.jpg"
+
+
+    
+    GridLayout:
+        cols: 2
+        size_hint: 0.35, 0.2
+        pos_hint: {"top": 0.9, "right": 0.35}
+        canvas.before:
+            Color:
+                rgba: 0.2, 0.2, 0.2, 0.8
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Label:
+            text: 'Keyword1'
+            text_size: self.size
+            valign: 'middle'
+
+        CheckBox:
+            id : chk_key1
+
+        Label:
+            text: 'Keyword2'
+            text_size: self.size
+            valign: 'middle'
+
+        CheckBox:
+            id: chk_key2      
+        
+        Label:
+            text: 'Keyword3'
+            text_size: self.size
+            valign: 'middle'
+
+        CheckBox:
+            id: chk_key3    
+
     GridLayout:
         rows: 5
         size_hint: 0.5, 0.55
-        pos_hint: {"top": 0.8, "right": 0.5}
+        pos_hint: {"top": 0.7, "right": 0.5}
         Button:
             canvas.before:
                 Color:
@@ -116,14 +154,25 @@
             pos_hint: {'center_x': 0.5, 'center_y': 0.1}
             text: "Back to Main"
             on_press: root.convert2m()
+        
+        Label:
+            canvas.before:
+                Color:
+                    rgba: 0.2, 0.2, 0.2, 0.8
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            text: "city-state"#root.getState()
+            size_hint: 1, 0.1
+            pos_hint: {'top':1, 'right': 1}
 
-        Spinner:
-            id: resource
-            size_hint: None, None
-            size: 200, 50
-            pos_hint:{'top': 0.95, 'right': 0.6}
-            text: 'Select Resource'
-            values: root.resource_value
+    #    Spinner:
+    #       id: resource
+    #        size_hint: None, None
+    #        size: 200, 50
+    #        pos_hint:{'top': 0.95, 'right': 0.6}
+    #        text: 'Select Resource'
+    #        values: root.resource_value
 
 
 <ThirdScreen>:
@@ -132,8 +181,7 @@
         Rectangle:
             pos: self.pos
             size: self.size
-            source: "testlogo.jpg"
-
+            source: "testlogo.jpg"  
 
     FloatLayout:
         Label:
@@ -167,9 +215,7 @@
 
         Button:
             background_color: (0.2, 0.5, 0.8, 0.3)
-            text:'Back to Main'
+            text:'Back to Result'
             size_hint:(0.3, 0.1)
             pos_hint: {'center_x': 0.8, 'center_y': 0.2}
             on_press: root.convert2r() 
-
-
