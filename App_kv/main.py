@@ -20,14 +20,18 @@ Builder.load_file(join(dirname(__file__), kv_file))
 
 Window.size = (600, 700)
 
-items = [
+items1 = [
         {"text" : "StateA", "seleceted": 'normal', "input_data":["key1","key2","key3"]},
         {"text" : "StateB", "seleceted": 'normal', "input_data":["key4","key5","key6"]},
         {"text" : "StateC", "seleceted": 'normal', "input_data":["key7","key8","key9"]},
+        
+    ]
+
+items2 = [
         {"text" : "StateD", "seleceted": 'normal', "input_data":["keyA","keyB","keyC"]},
         {"text" : "StateE", "seleceted": 'normal', "input_data":["keyD","keyE","keyF"]},
         {"text" : "StateF", "seleceted": 'normal', "input_data":["keyG","keyH","keyI"]},
-    ]
+]
 
 class WindowManager(ScreenManager):
     pass
