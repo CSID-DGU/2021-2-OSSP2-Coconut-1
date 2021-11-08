@@ -60,7 +60,7 @@ while(1):
                 noun_list=[] 
                 for sentence in morphs : 
                     for word, tag in sentence : 
-                        if (tag in ['Noun'] and word not in stopword: 
+                        if (tag in ['Noun'] and word not in stopword): 
                             noun_list.append(word)
                     tokenized_data.append(noun_list)
                 s=" ".join(noun_list)
