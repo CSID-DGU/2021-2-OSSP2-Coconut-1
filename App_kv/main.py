@@ -6,6 +6,7 @@ from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.button  import Button
 from kivy.uix.spinner  import Spinner
 from kivy.properties import ListProperty, BooleanProperty
+from kivy.properties import StringProperty
 from kivy.properties import ObjectProperty
 from kivy.core.window import Window
 from kivy.uix.screenmanager import ScreenManager, Screen
@@ -21,12 +22,14 @@ Window.size = (600, 700)
 
 items = [
         {"text" : "StateA", "seleceted": 'normal', "input_data":["key1","key2","key3"]},
-        {"text" : "StateB", "seleceted": 'normal', "input_data":["keyA","keyB","keyC"]},
-        {"text" : "StateC", "seleceted": 'normal', "input_data":["keyD","keyE","keyF"]},
+        {"text" : "StateB", "seleceted": 'normal', "input_data":["key4","key5","key6"]},
+        {"text" : "StateC", "seleceted": 'normal', "input_data":["key7","key8","key9"]},
+        {"text" : "StateD", "seleceted": 'normal', "input_data":["keyA","keyB","keyC"]},
+        {"text" : "StateE", "seleceted": 'normal', "input_data":["keyD","keyE","keyF"]},
+        {"text" : "StateF", "seleceted": 'normal', "input_data":["keyG","keyH","keyI"]},
     ]
 
-
-class windowManager(ScreenManager):
+class WindowManager(ScreenManager):
     pass
 
 class MainScreen(Screen):
@@ -49,19 +52,17 @@ class MainScreen(Screen):
         self.sub_values = self.values_dict[text]
         if text != 'Select City':
             self.ids.sub_drop.text = text
+
+    def update(self,text):
+        if text != '':
+            sm.get_screen('result').te = text   
+        
             
 
 class ResultScreen(Screen):
     def __init__(self, **kwargs):
         super(ResultScreen, self).__init__(**kwargs)
-        
-    
 
-    #def getState(self):
-    #    sm = self.manager
-    #    t1 = sm.get_screen('MainScreen').ids.sub_drop.text
-    #    return t1
-    
     #screen change
     def convert2m(self):
         sm = self.manager
@@ -73,10 +74,6 @@ class ResultScreen(Screen):
 
 
 class ThirdScreen(Screen):
-    
-    keyword1 = ObjectProperty(None)
-    keyword2 = ObjectProperty(None)
-    keyword3 = ObjectProperty(None)
 
     def __init__(self, **kwargs):
         super(ThirdScreen, self).__init__(**kwargs)

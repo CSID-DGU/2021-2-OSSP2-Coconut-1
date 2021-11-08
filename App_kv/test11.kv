@@ -1,10 +1,10 @@
-<windowManager>:
+<WindowManager>:
     MainScreen:
     ResultScreen:
-
+    ThirdScreen:
 
 <MainScreen>:
-    name: 'main'
+    name:'main'
     canvas.before:
         Rectangle:
             pos: self.pos
@@ -28,14 +28,22 @@
             size_hint: None, None
             size: 180, 50
             pos_hint:{'top': 1}
+            text: ''
             values: root.sub_values
+
             
     FloatLayout:
         Button:
             size_hint: (0.3, 0.1)
             pos_hint: {'center_x': 0.8, 'center_y': 0.1}
             text: "Submit"
-            on_press: root.convert2r()
+            on_press: 
+                root.convert2r()
+                root.manager.get_screen('result').ids.CityState.text = root.ids.main_drop.text + '-' + root.ids.sub_drop.text
+                root.manager.get_screen('third').ids.CityState2.text = root.ids.main_drop.text + '-' + root.ids.sub_drop.text
+                #root.manager.get_screen('result').ids.key1.text = app.
+                
+
             
         Button:
             size_hint: (0.3, 0.1)
@@ -45,7 +53,7 @@
     
 
 <ResultScreen>:
-    name: 'result'
+    name:'result'
     canvas.before:
         Rectangle:
             pos: self.pos
@@ -66,6 +74,7 @@
                 size: self.size
 
         Label:
+            id:key1
             text: 'Keyword1'
             text_size: self.size
             valign: 'middle'
@@ -74,6 +83,7 @@
             id : chk_key1
 
         Label:
+            id:key2
             text: 'Keyword2'
             text_size: self.size
             valign: 'middle'
@@ -82,6 +92,7 @@
             id: chk_key2      
         
         Label:
+            id:key3
             text: 'Keyword3'
             text_size: self.size
             valign: 'middle'
@@ -158,11 +169,12 @@
         Label:
             canvas.before:
                 Color:
-                    rgba: 0.2, 0.2, 0.2, 0.8
+                    rgba: 0.2, 0.2, 0.2, 0.8    
                 Rectangle:
                     pos: self.pos
                     size: self.size
-            text: "city-state"#root.getState()
+            id: CityState
+            text: 'test'#root.te #root.manager.get_screen('main').ids.sub_drop.text
             size_hint: 1, 0.1
             pos_hint: {'top':1, 'right': 1}
 
@@ -191,7 +203,8 @@
                 Rectangle:
                     pos: self.pos
                     size: self.size
-            text: "City-State"
+            id: CityState2
+            text: ""
             size_hint: 1, 0.1
             pos_hint: {'top':1, 'right': 1}
 
