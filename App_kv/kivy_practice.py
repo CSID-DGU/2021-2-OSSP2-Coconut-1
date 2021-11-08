@@ -1,58 +1,85 @@
 from kivy.app import App
-from kivy.uix.screenmanager import ScreenManager, Screen
-from kivy.uix.floatlayout import FloatLayout
-from kivy.properties import ListProperty, DictProperty
 from kivy.lang import Builder
-from os.path import dirname
-from os.path import join
+from kivy.uix.recycleview import RecycleView
+from kivy.uix.boxlayout import BoxLayout
+from kivy.properties import StringProperty
+from kivy.uix.recycleview.views import RecycleDataViewBehavior
 
 
-kv_file = 'test.kv'
-Builder.load_file(join(dirname(__file__), kv_file)) 
 
-class windowManager(ScreenManager):
-    pass
+items = [
+    {"text": "white",    "selected": 'normal', "input_data": ["some","random","data"]},
+    {"text": "lightblue","selected": 'normal', "input_data": [1,6,3]},
+    {"text": "blue",     "selected": 'normal', "input_data": [64,16,9]},
+    {"text": "gray",     "selected": 'normal', "input_data": [8766,13,6]},
+    {"text": "orange",   "selected": 'normal', "input_data": [9,4,6]},
+    {"text": "yellow",   "selected": 'normal', "input_data": [852,958,123]},
+    {"text": "white",    "selected": 'normal', "input_data": ["some","random","data"]},
+    {"text": "lightblue","selected": 'normal', "input_data": [1,6,3]},
+    {"text": "blue",     "selected": 'normal', "input_data": [64,16,9]},
+    {"text": "gray",     "selected": 'normal', "input_data": [8766,13,6]},
+    {"text": "orange",   "selected": 'normal', "input_data": [9,4,6]},
+    {"text": "yellow",   "selected": 'normal', "input_data": [852,958,123]}
+]
 
-class MainScreen(Screen):
-    values_dict = {'Group1':['Screen1', 'Screen2'],
-              'Group2':['Screen3', 'Screen4']}
 
-    sub_values = ListProperty()
 
-    def values_update(self,text):
-        self.sub_values = self.values_dict[text]
-        if text != 'Select group type':
-            self.ids.sub_drop.text = 'select ' + text + ' screen'
-            return 'select ' + text + ' screen'
+class MyViewClass(RecycleDataViewBehavior, BoxLayout):
 
-    def open_screen(self, text):        
-        if text != 'select ' + self.ids.main_drop.text + ' screen':
-            sm = self.manager
-            sm.current = text
+    text = StringProperty("")
+    index = None
 
-class Screen1(Screen):    
-    def open_screen(self):        
-        sm = self.manager
-        sm.current = 'main'
+    def set_state(self,state,app):
+        app.root.ids.rv.data[self.index]['selected'] = state
 
-class Screen2(Screen):
-    def open_screen(self):        
-        sm = self.manager
-        sm.current = 'main'
+    def refresh_view_attrs(self, rv, index, data):
+        self.index = index
+        return super(MyViewClass, self).refresh_view_attrs(rv, index, data)
 
-class Screen3(Screen):
-    def open_screen(self):        
-        sm = self.manager
-        sm.current = 'main'
 
-class Screen4(Screen):
-    def open_screen(self):        
-        sm = self.manager
-        sm.current = 'main'
 
-class appln(App):                
-    def build(self):    
-        return windowManager()            
+class MyRecycleView(RecycleView):
 
-if __name__=="__main__":
-    appln().run()
+    data = items
+
+    def print_data(self,data):
+        print([item['input_data'] for item in data if item['selected'] == 'down'])
+
+
+
+KV = '''
+
+<MyViewClass>:
+    orientation: 'horizontal'
+    CheckBox:
+        on_state: root.set_state(self.state,app)
+    Label:
+        text: root.text
+
+BoxLayout:
+    orientation: 'vertical'
+    MyRecycleView:
+        id: rv
+        viewclass: 'MyViewClass'
+        RecycleBoxLayout:
+            orientation: 'vertical'
+            default_size: None, dp(56)
+            default_size_hint: 1, None
+            size_hint_y: None
+            height: self.minimum_height
+    Button:
+        size_hint_y: 0.1
+        text: "Print data"
+        on_release: rv.print_data(rv.data)
+
+'''
+
+
+
+class Test(App):
+    def build(self):
+        root = Builder.load_string(KV)
+        return root
+
+
+Test().run()
