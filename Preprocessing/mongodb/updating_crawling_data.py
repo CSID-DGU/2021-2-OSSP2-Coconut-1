@@ -82,7 +82,7 @@ for region in region_list:
     #업데이트 되는 날짜를 검색 종료일로 지정
     end_date = datetime.datetime.now().strftime("%Y-%m-%d")
 
-    #업데이트 데이터는 이전 기록과 섞이게 하기위해 1/5인 200개로 제한 
+    #업데이트 데이터는 이전 기록과 섞이게 하기위해 1/5인 200개로 제한
     pages = 200
 
     #크롤링
