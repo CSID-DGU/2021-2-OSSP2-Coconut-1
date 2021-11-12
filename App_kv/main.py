@@ -55,11 +55,7 @@ class MainScreen(Screen):
     def values_update(self,text):
         self.sub_values = self.values_dict[text]
         if text != 'Select City':
-            self.ids.sub_drop.text = text
-
-    def update(self,text):
-        if text != '':
-            sm.get_screen('result').te = text   
+            self.ids.sub_drop.text = text 
         
             
 

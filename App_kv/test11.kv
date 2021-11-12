@@ -63,9 +63,9 @@
 
     
     GridLayout:
-        cols: 2
-        size_hint: 0.35, 0.2
-        pos_hint: {"top": 0.9, "right": 0.35}
+        cols: 4
+        size_hint: 1, 0.2
+        pos_hint: {"top": 0.9, "right": 1}
         canvas.before:
             Color:
                 rgba: 0.2, 0.2, 0.2, 0.8
@@ -98,12 +98,25 @@
             valign: 'middle'
 
         CheckBox:
-            id: chk_key3    
+            id: chk_key3
+
+        Label:
+            id:key3
+            text: 'Keyword'
+            text_size: self.size
+            valign: 'middle'
+
+        CheckBox:
+            id: chk_key4   
+
+
 
     GridLayout:
+        id: recom
         rows: 5
-        size_hint: 0.5, 0.55
-        pos_hint: {"top": 0.7, "right": 0.5}
+        size_hint: 1, 0.55
+        pos_hint: {"top": 0.7, "right": 1}
+        disabled: True
         Button:
             canvas.before:
                 Color:
@@ -114,6 +127,7 @@
             text: "First Recommend ->"
             display: None
             on_press: root.convert2t()
+            
 
         Button:
             canvas.before:
@@ -162,19 +176,28 @@
     FloatLayout:
         Button:
             size_hint: (0.3, 0.1)
-            pos_hint: {'center_x': 0.5, 'center_y': 0.1}
+            pos_hint: {'center_x': 0.2, 'center_y': 0.1}
             text: "Back to Main"
+            background_color: 0.2, 0.2, 0.5, 0.8   
             on_press: root.convert2m()
+
+        Button:
+            size_hint: (0.3, 0.1)
+            pos_hint: {'center_x': 0.8, 'center_y': 0.1}
+            text: "Show Recommend"
+            background_color: 0.2, 0.2, 0.5, 0.8   
+            on_press: root.ids.recom.disabled = False
+
         
         Label:
             canvas.before:
                 Color:
-                    rgba: 0.2, 0.2, 0.2, 0.8    
+                    rgba: 0.2, 0.2, 0.5, 0.6    
                 Rectangle:
                     pos: self.pos
                     size: self.size
             id: CityState
-            text: 'test'#root.te #root.manager.get_screen('main').ids.sub_drop.text
+            text: ''
             size_hint: 1, 0.1
             pos_hint: {'top':1, 'right': 1}
 
@@ -185,6 +208,7 @@
     #        pos_hint:{'top': 0.95, 'right': 0.6}
     #        text: 'Select Resource'
     #        values: root.resource_value
+
 
 
 <ThirdScreen>:
