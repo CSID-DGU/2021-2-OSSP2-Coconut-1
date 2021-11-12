@@ -1,3 +1,5 @@
+
+
 <WindowManager>:
     MainScreen:
     ResultScreen:
@@ -125,7 +127,6 @@
                     pos: self.pos
                     size: self.size
             text: "First Recommend ->"
-            display: None
             on_press: root.convert2t()
             
 
@@ -137,7 +138,6 @@
                     pos: self.pos
                     size: self.size
             text: "Second Recommend ->"
-            display: None
             on_press: root.convert2t()    
 
         Button:
@@ -148,7 +148,6 @@
                     pos: self.pos
                     size: self.size
             text: "Third Recommend ->"
-            display: None
             on_press: root.convert2t() 
 
         Button:
@@ -159,7 +158,6 @@
                     pos: self.pos
                     size: self.size
             text: "Fourth Recommend ->"
-            display: None
             on_press: root.convert2t() 
 
         Button:
@@ -170,7 +168,6 @@
                     pos: self.pos
                     size: self.size
             text: "Fifth Recommend ->"
-            display: None
             on_press: root.convert2t() 
 
     FloatLayout:
@@ -192,7 +189,7 @@
         Label:
             canvas.before:
                 Color:
-                    rgba: 0.2, 0.2, 0.5, 0.6    
+                    rgba: 0.2, 0.2, 0.5, 0.8     
                 Rectangle:
                     pos: self.pos
                     size: self.size
@@ -219,11 +216,25 @@
             size: self.size
             source: "testlogo.jpg"  
 
-    FloatLayout:
+    ScrollView:
+        do_scroll_x: False
+        do_scroll_y: True
+        pos_hint: {'top': 0.85}
         Label:
             canvas.before:
                 Color:
                     rgba: 0.2, 0.2, 0.2, 0.8
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            text:'About tour'
+            pos_hint: {'right':1}
+
+    FloatLayout:
+        Label:
+            canvas.before:
+                Color:
+                    rgba: 0.2, 0.2, 0.5, 0.8
                 Rectangle:
                     pos: self.pos
                     size: self.size
@@ -232,27 +243,17 @@
             size_hint: 1, 0.1
             pos_hint: {'top':1, 'right': 1}
 
-        Label:
-            canvas.before:
-                Color:
-                    rgba: 0.2, 0.2, 0.2, 0.8
-                Rectangle:
-                    pos: self.pos
-                    size: self.size
-            text:'About Tour'
-            size_hint: 1, 0.6
-            pos_hint: {'right':1}
-
         Button:
-            background_color: (0.2, 0.5, 0.8, 0.5)
+            background_color: (0.2, 0.5, 0.8, 0.8)
             text:'Back to Main'
-            size_hint:(0.3, 0.1)
-            pos_hint: {'center_x': 0.8, 'center_y': 0.1}
+            size_hint:(0.5, 0.1)
+            pos_hint: {'center_x': 0.25, 'center_y': 0.1}
             on_press: root.convert2m()
 
         Button:
-            background_color: (0.2, 0.5, 0.8, 0.3)
+            background_color: (0.2, 0.5, 0.8, 0.6)
             text:'Back to Result'
-            size_hint:(0.3, 0.1)
-            pos_hint: {'center_x': 0.8, 'center_y': 0.2}
+            size_hint:(0.5, 0.1)
+            pos_hint: {'center_x': 0.75, 'center_y': 0.1}
             on_press: root.convert2r() 
+
