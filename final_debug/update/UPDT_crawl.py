@@ -57,13 +57,9 @@ def get_post_info(keyword: str, start_date: str, end_date: str, pages: int) -> p
 
     return total_header, total_contents, total_date
 
-
-def update_crawling_data():
+def UPDT_crawl(client):
     region_list = regions.get_regions()
-
-    #클라이언트 연결
-    client = pm.MongoClient('mongodb+srv://OSSPCOCONUT:coconut123@ossp-cluster.3vu4p.mongodb.net/test?retryWrites=true&w=majority', tlsCAFile=certifi.where())
-
+    
     #지역별 업데이트
     for region in region_list:
 

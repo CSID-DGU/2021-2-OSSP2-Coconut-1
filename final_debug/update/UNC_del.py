@@ -2,13 +2,10 @@ import pymongo as pm
 import certifi
 import regions
 
-def del_UNC():
+def UNC_del(client):
     #지역명 가져오기
     region_list = regions.get_regions()
-
-    #클라이언트 연결
-    client = pm.MongoClient('mongodb+srv://OSSPCOCONUT:coconut123@ossp-cluster.3vu4p.mongodb.net/test?retryWrites=true&w=majority', tlsCAFile=certifi.where())
-
+    
     for region in region_list:
         #해당지역 DB와 collection 생성
         db = client["crawling_data"]
