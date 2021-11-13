@@ -42,11 +42,14 @@ while(1):
     
     today=datetime.datetime.today()
     if ( (todat.day==1) and (today.hour==23) and (today.minute==1) and (today.second==1)):
-
+        
+        #mongo db 붙여야함
+        #한문장으로 만들기
+        
+        #231X(region,sentences)받아오는 코드 들어갈자리
+        #정규표현식을 이용해 한글만 남겨주는 작업
+        matrix_231x2['sentences'] = matrix_231x2['sentences'].str.replace("[^ㄱ-ㅎㅏ-ㅣ가-힣 ]","")
         while(1):
-            #231X(region,sentences)받아오는 코드 들어갈자리
-            #정규표현식을 이용해 한글만 남겨주는 작업
-            matrix_231x2['sentences'] = matrix_231x2['sentences'].str.replace("[^ㄱ-ㅎㅏ-ㅣ가-힣 ]","")
             
             #형태소 분석
 
@@ -60,7 +63,7 @@ while(1):
                 noun_list=[] 
                 for sentence in morphs : 
                     for word, tag in sentence : 
-                        if (tag in ['Noun'] and word not in stopword): 
+                        if (tag in ['Noun'] and word not in stopword): #mongodb 이용
                             noun_list.append(word)
                     tokenized_data.append(noun_list)
                 s=" ".join(noun_list)
@@ -79,7 +82,12 @@ while(1):
                 if plus_stopword=='':
                     break
                 stopword=stopword+[plus_stopword]
-            if need_update==0:
+            if need_update==0:          
+                tfidf_dict = tfidfv.get_feature_names()
+                data_array = X.toarray()
+                tfidf_df=pd.DataFrame(data=data_array,columns=tfidf_dict)
+                tfidf_df['region']=matrix_231x2.region
+                #리턴값 tfidf_df
                 break
             
 

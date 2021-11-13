@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 
 ############################데이터 DB에서 받아올 부분(수정필요)
+#mongodb feature data에서 데이터프레임으로 변환
 matrix_231x201=pd.read_csv("matrix_231x201_211108.csv", encoding="utf-8")
 
 #############################사용자가 지역명(input)입력하면 input_region으로 받아올 부분(수정필요)

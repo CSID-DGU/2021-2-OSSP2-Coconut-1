@@ -89,6 +89,7 @@ for region in region_list:
     total_header, total_contents, total_date = get_post_info(keyword, start_date, end_date, pages)
 
     overlap_check={}
+    
     #데이터 삽입
     for row_data in zip(total_header, total_contents, total_date):
         if row_data[0] == " ":
