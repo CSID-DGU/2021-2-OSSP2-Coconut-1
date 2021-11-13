@@ -20,7 +20,8 @@
             size_hint: None, None
             size: 180, 50
             pos_hint:{'top': 1}
-            text: 'Select City'
+            text: '도시 선택'
+            font_name: './HMKMRHD.ttf'
             values: root.values_dict.keys()
             on_text:
                 root.values_update(self.text)
@@ -30,7 +31,8 @@
             size_hint: None, None
             size: 180, 50
             pos_hint:{'top': 1}
-            text: ''
+            text: '시/군/구 선택'
+            font_name: './HMKMRHD.ttf'
             values: root.sub_values
 
             
@@ -38,8 +40,9 @@
         Button:
             size_hint: (0.3, 0.1)
             pos_hint: {'center_x': 0.8, 'center_y': 0.1}
-            text: "Submit"
-            on_press: 
+            text: "제출"
+            font_name: './HMKMRHD.ttf'
+            on_press:
                 root.convert2r()
                 root.manager.get_screen('result').ids.CityState.text = root.ids.main_drop.text + '-' + root.ids.sub_drop.text
                 root.manager.get_screen('third').ids.CityState2.text = root.ids.main_drop.text + '-' + root.ids.sub_drop.text
@@ -50,7 +53,8 @@
         Button:
             size_hint: (0.3, 0.1)
             pos_hint: {'center_x': 0.2, 'center_y': 0.1}
-            text: "Exit"
+            text: "종료"
+            font_name: './HMKMRHD.ttf'
             on_press: root.onExit()
     
 
@@ -77,7 +81,8 @@
 
         Label:
             id:key1
-            text: 'Keyword1'
+            text: '키워드1'
+            font_name: './HMKMRHD.ttf'
             text_size: self.size
             valign: 'middle'
 
@@ -86,7 +91,8 @@
 
         Label:
             id:key2
-            text: 'Keyword2'
+            text: '키워드2'
+            font_name: './HMKMRHD.ttf'
             text_size: self.size
             valign: 'middle'
 
@@ -95,7 +101,8 @@
         
         Label:
             id:key3
-            text: 'Keyword3'
+            text: '키워드3'
+            font_name: './HMKMRHD.ttf'
             text_size: self.size
             valign: 'middle'
 
@@ -103,8 +110,9 @@
             id: chk_key3
 
         Label:
-            id:key3
-            text: 'Keyword'
+            id:key4
+            text: '키워드4'
+            font_name: './HMKMRHD.ttf'
             text_size: self.size
             valign: 'middle'
 
@@ -126,7 +134,8 @@
                 Rectangle:
                     pos: self.pos
                     size: self.size
-            text: "First Recommend ->"
+            text: "첫번째 추천지역 ->"
+            font_name: './HMKMRHD.ttf'
             on_press: root.convert2t()
             
 
@@ -137,7 +146,8 @@
                 Rectangle:
                     pos: self.pos
                     size: self.size
-            text: "Second Recommend ->"
+            text: "두번째 추천지역 ->"
+            font_name: './HMKMRHD.ttf'
             on_press: root.convert2t()    
 
         Button:
@@ -147,7 +157,8 @@
                 Rectangle:
                     pos: self.pos
                     size: self.size
-            text: "Third Recommend ->"
+            text: "세번째 추천지역 ->"
+            font_name: './HMKMRHD.ttf'
             on_press: root.convert2t() 
 
         Button:
@@ -157,7 +168,8 @@
                 Rectangle:
                     pos: self.pos
                     size: self.size
-            text: "Fourth Recommend ->"
+            text: "네번째 추천지역 ->"
+            font_name: './HMKMRHD.ttf'
             on_press: root.convert2t() 
 
         Button:
@@ -167,21 +179,24 @@
                 Rectangle:
                     pos: self.pos
                     size: self.size
-            text: "Fifth Recommend ->"
+            text: "다섯번째 추천지역 ->"
+            font_name: './HMKMRHD.ttf'
             on_press: root.convert2t() 
 
     FloatLayout:
         Button:
             size_hint: (0.3, 0.1)
             pos_hint: {'center_x': 0.2, 'center_y': 0.1}
-            text: "Back to Main"
+            text: "메인화면으로"
+            font_name: './HMKMRHD.ttf'
             background_color: 0.2, 0.2, 0.5, 0.8   
             on_press: root.convert2m()
 
         Button:
             size_hint: (0.3, 0.1)
             pos_hint: {'center_x': 0.8, 'center_y': 0.1}
-            text: "Show Recommend"
+            text: "추천지역 보기"
+            font_name: './HMKMRHD.ttf'
             background_color: 0.2, 0.2, 0.5, 0.8   
             on_press: root.ids.recom.disabled = False
 
@@ -195,6 +210,7 @@
                     size: self.size
             id: CityState
             text: ''
+            font_name: './HMKMRHD.ttf'
             size_hint: 1, 0.1
             pos_hint: {'top':1, 'right': 1}
 
@@ -227,7 +243,8 @@
                 Rectangle:
                     pos: self.pos
                     size: self.size
-            text:'About tour'
+            text:'관광지 설명'
+            font_name: './HMKMRHD.ttf'
             pos_hint: {'right':1}
 
     FloatLayout:
@@ -240,19 +257,22 @@
                     size: self.size
             id: CityState2
             text: ""
+            font_name: './HMKMRHD.ttf'
             size_hint: 1, 0.1
             pos_hint: {'top':1, 'right': 1}
 
         Button:
             background_color: (0.2, 0.5, 0.8, 0.8)
-            text:'Back to Main'
+            text:'메인화면으로'
+            font_name: './HMKMRHD.ttf'
             size_hint:(0.5, 0.1)
             pos_hint: {'center_x': 0.25, 'center_y': 0.1}
             on_press: root.convert2m()
 
         Button:
             background_color: (0.2, 0.5, 0.8, 0.6)
-            text:'Back to Result'
+            text:'이전화면으로'
+            font_name: './HMKMRHD.ttf'
             size_hint:(0.5, 0.1)
             pos_hint: {'center_x': 0.75, 'center_y': 0.1}
             on_press: root.convert2r() 
