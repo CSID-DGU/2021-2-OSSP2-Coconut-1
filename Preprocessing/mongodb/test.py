@@ -1,10 +1,8 @@
-import pymongo as pm
-import certifi
-import pandas as pd
-import get_regVec
+import regions
 
-client = pm.MongoClient('mongodb+srv://OSSPCOCONUT:coconut123@ossp-cluster.3vu4p.mongodb.net/test?retryWrites=true&w=majority', tlsCAFile=certifi.where())
+region = regions.get_regions()
 
-a = get_regVec.get_regVec(client)
+region.sort()
 
-print(a)
+for i in region:
+    print(i)
