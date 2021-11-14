@@ -22,6 +22,7 @@
             pos_hint:{'top': 1}
             text: '도시 선택'
             font_name: './HMKMRHD.ttf'
+            option_cls: 'MySpinnerOption'
             values: root.values_dict.keys()
             on_text:
                 root.values_update(self.text)
@@ -33,6 +34,7 @@
             pos_hint:{'top': 1}
             text: '시/군/구 선택'
             font_name: './HMKMRHD.ttf'
+            option_cls: 'MySpinnerOption'
             values: root.sub_values
 
             
