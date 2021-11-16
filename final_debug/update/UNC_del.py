@@ -2,7 +2,7 @@ import pymongo as pm
 import certifi
 import regions
 
-def UNC_del(client):
+def del_data(client):
     #지역명 가져오기
     region_list = regions.get_regions()
     

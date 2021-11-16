@@ -57,7 +57,7 @@ def get_post_info(keyword: str, start_date: str, end_date: str, pages: int) -> p
 
     return total_header, total_contents, total_date
 
-def UPDT_crawl(client):
+def crawl(client):
     region_list = regions.get_regions()
     
     #지역별 업데이트
