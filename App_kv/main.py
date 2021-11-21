@@ -1,4 +1,5 @@
 import kivy
+#import pymongo
 from kivy.app import App 
 kivy.require('1.9.0') 
 from kivy.uix.dropdown  import DropDown
@@ -16,11 +17,26 @@ from kivy.lang import Builder
 from os.path import dirname
 from os.path import join
 
+
+#client = pymongo.MongoClient("mongodb://localhost:~")
+#DB이름으로 db가져오기
+#db = client["database"]
+
+#Collection Name = Fetch할 db coloumn? table?
+#col = db["collectionName"]
+
+#fetch한 data로부터 원하는 값 찾기
+#x = col.find()
+#for data in x:
+    #print(data)
+
+
+
 fontName = './HMKMRHD.ttf'
 kv_file = 'test11.kv'
 Builder.load_file(join(dirname(__file__), kv_file)) 
 
-Window.size = (600, 700)
+Window.size = (600, 800)
 
 keywords = [['키워드11', '키워드22', '키워드33', '키워드44'],
         ['키워드A', '키워드B', '키워드C', '키워드D']]
@@ -63,6 +79,10 @@ class MainScreen(Screen):
         sm = self.manager
         maint = self.ids.main_drop.text
         subt = self.ids.sub_drop.text
+        #maint + subt에 해당하는 data row가져오기
+        #x = col.find({},{'name': maint+'_'+subt})
+        #x에서 상위 keyword10개 가져와서 result page에 집어넣기
+        #이후 선택된 keyword를 토대로 다시 request해서 추천알고리즘으로부터 해당 지역 받기
         if maint + '_' +subt == '서울_종로구':
             sm.get_screen('result').ids.key1.text = keywords[0][0]
             sm.get_screen('result').ids.key2.text = keywords[0][1]
