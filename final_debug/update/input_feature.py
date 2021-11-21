@@ -2,7 +2,7 @@ import pymongo as pm
 import pandas as pd
 import certifi
 
-def input_feature(client, data):
+def input(client, data):
 
     for row in range(len(data)):
         

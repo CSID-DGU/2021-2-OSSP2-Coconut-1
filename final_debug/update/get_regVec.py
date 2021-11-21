@@ -9,7 +9,7 @@ import pymongo as pm
 import certifi
 import regions
 
-def get_regVec(client):
+def get(client):
     
     region_list = regions.get_regions()
     
