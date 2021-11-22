@@ -16,7 +16,7 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.lang import Builder
 from os.path import dirname
 from os.path import join
-import get_feature
+import 
 
 #client = pymongo.MongoClient("mongodb://localhost:~")
 #DB이름으로 db가져오기
@@ -83,17 +83,11 @@ class MainScreen(Screen):
         #x = col.find({},{'name': maint+'_'+subt})
         #x에서 상위 keyword10개 가져와서 result page에 집어넣기
         #이후 선택된 keyword를 토대로 다시 request해서 추천알고리즘으로부터 해당 지역 받기
-        features = get_feature.get_f(maint + '_' + subt)
-        sm.get_screen('result').ids.key1.text = features[0]
-        sm.get_screen('result').ids.key2.text = features[1]
-        sm.get_screen('result').ids.key3.text = features[2]
-        sm.get_screen('result').ids.key4.text = features[3]
-        sm.get_screen('result').ids.key5.text = features[4]
-        sm.get_screen('result').ids.key6.text = features[5]
-        sm.get_screen('result').ids.key7.text = features[6]
-        sm.get_screen('result').ids.key8.text = features[7]
-        sm.get_screen('result').ids.key9.text = features[8]
-        sm.get_screen('result').ids.key10.text = features[9]
+        if maint + '_' +subt == '서울_종로구':
+            sm.get_screen('result').ids.key1.text = keywords[0][0]
+            sm.get_screen('result').ids.key2.text = keywords[0][1]
+            sm.get_screen('result').ids.key3.text = keywords[0][2]
+            sm.get_screen('result').ids.key4.text = keywords[0][3]
 
     #지역을 모두 선택했는지 확인(안했을시 알림창 팝업)/ 선택한 지역에 해당하는 키워드를 DB로부터 가져옴
     def convert2r(self):
