@@ -5,3 +5,8 @@ def get_f(region):
     text = url.text
     data = json.loads(text)
     return data['features']
+
+"""
+사용예시
+print(get_f("강원_강릉시"))
+"""

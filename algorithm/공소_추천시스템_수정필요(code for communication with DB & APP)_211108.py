@@ -3,7 +3,7 @@ import numpy as np
 
 ############################데이터 DB에서 받아올 부분(수정필요)
 #mongodb feature data에서 데이터프레임으로 변환
-matrix_231x201=pd.read_csv("matrix_231x201_211108.csv", encoding="utf-8")
+matrix_231x201=pd.read_csv("2021-2-OSSP2-Coconut-1/algorithm/matrix_231x201_211108.csv", encoding="utf-8")
 
 #############################사용자가 지역명(input)입력하면 input_region으로 받아올 부분(수정필요)
 input_region=input("지역명입력:")
@@ -12,7 +12,7 @@ select_reg_sorted_T=matrix_231x201[matrix_231x201.region==input_region].T.iloc[r
 select_reg_sorted=select_reg_sorted_T.T
 #output==top10keywords(list)
 top10keywords=select_reg_sorted_T.head(10).index
-
+print(list(top10keywords))
 
 #############################
 ##!!!!!!!APP으로 top10keywords 보내는 코드 들어갈자라
