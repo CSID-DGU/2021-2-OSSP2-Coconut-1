@@ -7,6 +7,5 @@ def get_f(region):
     return data['features']
 
 """
-사용예시
 print(get_f("강원_강릉시"))
 """
