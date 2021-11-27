@@ -16,7 +16,6 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.lang import Builder
 from os.path import dirname
 from os.path import join
-import 
 
 #client = pymongo.MongoClient("mongodb://localhost:~")
 #DB이름으로 db가져오기
