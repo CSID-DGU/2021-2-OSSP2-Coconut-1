@@ -1,7 +1,7 @@
 import kivy
-#import pymongo
 from kivy.app import App 
-kivy.require('1.9.0') 
+kivy.require('1.9.0')
+from kivy.uix.checkbox import CheckBox 
 from kivy.uix.dropdown  import DropDown
 from kivy.uix.label import Label
 from kivy.uix.floatlayout import FloatLayout
@@ -17,18 +17,8 @@ from kivy.lang import Builder
 from os.path import dirname
 from os.path import join
 import get_feature
+import get_region
 
-#client = pymongo.MongoClient("mongodb://localhost:~")
-#DB이름으로 db가져오기
-#db = client["database"]
-
-#Collection Name = Fetch할 db coloumn? table?
-#col = db["collectionName"]
-
-#fetch한 data로부터 원하는 값 찾기
-#x = col.find()
-#for data in x:
-    #print(data)
 
 
 
@@ -37,9 +27,6 @@ kv_file = 'test11.kv'
 Builder.load_file(join(dirname(__file__), kv_file)) 
 
 Window.size = (600, 800)
-
-keywords = [['키워드11', '키워드22', '키워드33', '키워드44'],
-        ['키워드A', '키워드B', '키워드C', '키워드D']]
 
 class WindowManager(ScreenManager):
     pass
@@ -52,7 +39,6 @@ class MySpinnerOption(SpinnerOption):
 class MainScreen(Screen):
     def __init__(self, **kwargs):
         super(MainScreen, self).__init__(**kwargs)
-    #font_name = fontName
     
     values_dict = {'강원':['강릉시','고성군','동해시','삼척시','속초시','양구군','양양군','영월군','원주시','인제군','정선군','철원군','춘천시','태백시','평창군','홍천군','화천군','횡성군'],
     '경기':['가평군','고양시','과천시','광명시','광주시','구리시','군포시','김포시','남양주시','동두천시','부천시','성남시','수원시','시흥시','안산시','안성시','안양시','양주시','양평군','여주시','연천군','오산시','용인시','의왕시','의정부시','이천시','파주시','평택시','포천시','하남시','화성시'],
@@ -79,10 +65,6 @@ class MainScreen(Screen):
         sm = self.manager
         maint = self.ids.main_drop.text
         subt = self.ids.sub_drop.text
-        #maint + subt에 해당하는 data row가져오기
-        #x = col.find({},{'name': maint+'_'+subt})
-        #x에서 상위 keyword10개 가져와서 result page에 집어넣기
-        #이후 선택된 keyword를 토대로 다시 request해서 추천알고리즘으로부터 해당 지역 받기
         features = get_feature.get_f(maint + '_' + subt)
         sm.get_screen('result').ids.key1.text = features[0]
         sm.get_screen('result').ids.key2.text = features[1]
@@ -122,15 +104,65 @@ size_hint=(None, None), size=(400, 200))
 class ResultScreen(Screen):
     def __init__(self, **kwargs):
         super(ResultScreen, self).__init__(**kwargs)
+        sm = self.manager    
+        
+    
+    key_values=ListProperty()
+    region = ListProperty()
+    popup = Popup(title ='Alert!!', content=Label(text='최소한 하나의 키워드를 선택해 주세요!',font_name = fontName),
+size_hint=(None, None), size=(400, 200))
 
     #screen change
     def convert2m(self):
         sm = self.manager
         sm.current = 'main'
+        
 
-    def convert2t(self):
+    def convert2t(self,text):
         sm = self.manager
+        sm.get_screen('third').ids.CityState2.text = text
         sm.current = 'third'
+
+    def get_keyval(self):
+        sm = self.manager
+        
+        self.key_values.append(sm.get_screen('main').ids.main_drop.text + '_' + sm.get_screen('main').ids.sub_drop.text)
+        if self.ids.chk_key1.active:
+            self.key_values.append(self.ids.key1.text)
+        if self.ids.chk_key2.active:
+            self.key_values.append(self.ids.key2.text)
+        if self.ids.chk_key3.active:
+            self.key_values.append(self.ids.key3.text)
+        if self.ids.chk_key4.active:
+            self.key_values.append(self.ids.key4.text)
+        if self.ids.chk_key5.active:
+            self.key_values.append(self.ids.key5.text)
+        if self.ids.chk_key6.active:
+            self.key_values.append(self.ids.key6.text)
+        if self.ids.chk_key7.active:
+            self.key_values.append(self.ids.key7.text)
+        if self.ids.chk_key8.active:
+            self.key_values.append(self.ids.key8.text)
+        if self.ids.chk_key9.active:
+            self.key_values.append(self.ids.key9.text)
+        if self.ids.chk_key10.active:
+            self.key_values.append(self.ids.key10.text)
+        
+        if len(self.key_values)==1:
+            self.popup.open()
+        else:
+            Region = get_region.get_r(self.key_values)
+            self.ids.recom.disabled = False
+            self.ids.recom1.text=Region[0]
+            self.ids.recom2.text=Region[1]
+            self.ids.recom3.text=Region[2]
+            self.ids.recom4.text=Region[3]
+            self.ids.recom5.text=Region[4]
+
+            #추천지역에 값 할당해준후 배열 초기화
+            Region.clear()
+            self.key_values.clear()
+        
 
 
 class ThirdScreen(Screen):

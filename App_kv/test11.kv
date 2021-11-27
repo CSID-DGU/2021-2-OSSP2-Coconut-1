@@ -47,8 +47,7 @@
             on_press:
                 root.convert2r()
                 root.manager.get_screen('result').ids.CityState.text = root.ids.main_drop.text + '-' + root.ids.sub_drop.text
-                root.manager.get_screen('third').ids.CityState2.text = root.ids.main_drop.text + '-' + root.ids.sub_drop.text
-                #root.manager.get_screen('result').ids.key1.text = app.
+                
                 
 
             
@@ -196,9 +195,10 @@
                 Rectangle:
                     pos: self.pos
                     size: self.size
+            id: recom1
             text: "첫번째 추천지역 ->"
             font_name: './HMKMRHD.ttf'
-            on_press: root.convert2t()
+            on_press: root.convert2t(self.text)
             
 
         Button:
@@ -208,9 +208,10 @@
                 Rectangle:
                     pos: self.pos
                     size: self.size
+            id: recom2
             text: "두번째 추천지역 ->"
             font_name: './HMKMRHD.ttf'
-            on_press: root.convert2t()    
+            on_press: root.convert2t(self.text)    
 
         Button:
             canvas.before:
@@ -219,9 +220,10 @@
                 Rectangle:
                     pos: self.pos
                     size: self.size
+            id: recom3
             text: "세번째 추천지역 ->"
             font_name: './HMKMRHD.ttf'
-            on_press: root.convert2t() 
+            on_press: root.convert2t(self.text) 
 
         Button:
             canvas.before:
@@ -230,9 +232,10 @@
                 Rectangle:
                     pos: self.pos
                     size: self.size
+            id: recom4
             text: "네번째 추천지역 ->"
             font_name: './HMKMRHD.ttf'
-            on_press: root.convert2t() 
+            on_press: root.convert2t(self.text) 
 
         Button:
             canvas.before:
@@ -241,9 +244,10 @@
                 Rectangle:
                     pos: self.pos
                     size: self.size
+            id: recom5
             text: "다섯번째 추천지역 ->"
             font_name: './HMKMRHD.ttf'
-            on_press: root.convert2t() 
+            on_press: root.convert2t(self.text) 
 
     FloatLayout:
         Button:
@@ -260,7 +264,9 @@
             text: "추천지역 보기"
             font_name: './HMKMRHD.ttf'
             background_color: 0.2, 0.2, 0.5, 0.8   
-            on_press: root.ids.recom.disabled = False
+            on_press: 
+                root.get_keyval()
+
 
         
         Label:
