@@ -53,16 +53,10 @@ class MainScreen(Screen):
         maint = self.ids.main_drop.text
         subt = self.ids.sub_drop.text
         features = get_feature.get_f(maint + '_' + subt)
-        sm.get_screen('result').ids.key1.text = features[0]
-        sm.get_screen('result').ids.key2.text = features[1]
-        sm.get_screen('result').ids.key3.text = features[2]
-        sm.get_screen('result').ids.key4.text = features[3]
-        sm.get_screen('result').ids.key5.text = features[4]
-        sm.get_screen('result').ids.key6.text = features[5]
-        sm.get_screen('result').ids.key7.text = features[6]
-        sm.get_screen('result').ids.key8.text = features[7]
-        sm.get_screen('result').ids.key9.text = features[8]
-        sm.get_screen('result').ids.key10.text = features[9]
+
+        for i in range(1,11):
+            k = 'key' + str(i)
+            sm.get_screen('result').ids[k].text = features[i-1]
 
     #지역을 모두 선택했는지 확인(안했을시 알림창 팝업)/ 선택한 지역에 해당하는 키워드를 DB로부터 가져옴
     def convert2r(self):
@@ -184,7 +178,7 @@ class ThirdScreen(Screen):
         sm = self.manager
         sm.current = 'result'
 
-    def convert2i(self, text):
+    def convert2i(self, region, text):
         sm = self.manager
         sm.current = 'info'
         
