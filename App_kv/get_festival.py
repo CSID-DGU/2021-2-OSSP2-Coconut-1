@@ -8,6 +8,7 @@ def get_fstv(region):
     data = json.loads(text)
     return data['festivals']
 
-"""
-print(get_fstv("강원_동해시"))
-"""
+'''
+test = get_fstv("강원_동해시")
+print(test[0])
+'''

@@ -96,6 +96,9 @@ class ResultScreen(Screen):
     
     key_values=ListProperty()
     region = ListProperty()
+    landmark = ListProperty()
+    festival = ListProperty()
+
     popup = Popup(title ='Alert!!', content=Label(text='최소한 하나의 키워드를 선택해 주세요!',font_name = fontName),
 size_hint=(None, None), size=(600, 400))
 
@@ -105,9 +108,34 @@ size_hint=(None, None), size=(600, 400))
         sm.current = 'main'
         
 
-    def convert2t(self,text):
+    def convert2t(self,t):
         sm = self.manager
-        sm.get_screen('third').ids.CityState2.text ='선택하신 여행지 ' +  text + '(은)는 ...'
+        sm.get_screen('third').ids.CityState2.text ='선택하신 여행지 ' +  t + '(은)는 ...'
+        landmark = get_landmark.get_lm(t)
+        festival = get_festival.get_fstv(t)
+        ## 여기다가 third화면에 있는 추천관광지와 축제에 뿌려주는 코드 작성
+        
+        for idx, val in enumerate(landmark):
+            if idx > 4:
+                break
+            if val != None:
+                cur = idx + 1
+                t1 = 'tourrec' + str(cur)
+                t2 = 'tourrecom' + str(cur)
+                sm.get_screen('third').ids[t1].text = landmark[idx]
+                sm.get_screen('third').ids[t1].disabled = False
+                sm.get_screen('third').ids[t2].disabled = False
+
+        for idx, val in enumerate(festival):
+            if idx > 4:
+                break
+            if val != None:
+                cur = idx + 1
+                t1 = 'fesrec' + str(cur)
+                t2 = 'fesrecom' + str(cur)
+                sm.get_screen('third').ids[t1].text = festival[idx]
+                sm.get_screen('third').ids[t1].disabled = False
+                sm.get_screen('third').ids[t2].disabled = False
         sm.current = 'third'
 
     def get_keyval(self):
@@ -115,57 +143,35 @@ size_hint=(None, None), size=(600, 400))
         
         self.key_values.append(sm.get_screen('main').ids.main_drop.text + '_' + sm.get_screen('main').ids.sub_drop.text)
 
-        if self.ids.chk_key1.active:
-            self.key_values.append(self.ids.key1.text)
-        if self.ids.chk_key2.active:
-            self.key_values.append(self.ids.key2.text)
-        if self.ids.chk_key3.active:
-            self.key_values.append(self.ids.key3.text)
-        if self.ids.chk_key4.active:
-            self.key_values.append(self.ids.key4.text)
-        if self.ids.chk_key5.active:
-            self.key_values.append(self.ids.key5.text)
-        if self.ids.chk_key6.active:
-            self.key_values.append(self.ids.key6.text)
-        if self.ids.chk_key7.active:
-            self.key_values.append(self.ids.key7.text)
-        if self.ids.chk_key8.active:
-            self.key_values.append(self.ids.key8.text)
-        if self.ids.chk_key9.active:
-            self.key_values.append(self.ids.key9.text)
-        if self.ids.chk_key10.active:
-            self.key_values.append(self.ids.key10.text)
-        
+        for i in range(1, 11):
+            chk = 'chk_key' + str(i)
+            k = 'key' + str(i)
+            if self.ids[chk].active:
+                self.key_values.append(self.ids[k].text)
+
         if len(self.key_values)==1:
             self.key_values.clear()
             self.popup.open()
         else:
             Region = get_region.get_r(self.key_values)
             self.ids.recom.disabled = False
-            self.ids.recom1.text=Region[0]
-            self.ids.recom2.text=Region[1]
-            self.ids.recom3.text=Region[2]
-            self.ids.recom4.text=Region[3]
-            self.ids.recom5.text=Region[4]
+            for i in range(1,6):
+                r = 'recom' + str(i)
+                self.ids[r].text = Region[i-1]
             #추천지역에 값 할당해준후 배열 초기화
             Region.clear()
             self.key_values.clear()
         
-    def reset_checkbox(self):
-        self.ids.chk_key1.active = False
-        self.ids.chk_key2.active = False
-        self.ids.chk_key3.active = False
-        self.ids.chk_key4.active = False
-        self.ids.chk_key5.active = False
-        self.ids.chk_key6.active = False
-        self.ids.chk_key7.active = False
-        self.ids.chk_key8.active = False
-        self.ids.chk_key9.active = False
-        self.ids.chk_key10.active = False
+    #result화면을 떠났을 때 키워드 제외 값 초기화
+    def reset_all(self):
+        self.ids.recom.disabled = True
+        for i in range(1, 11):
+            k = 'chk_key' + str(i)
+            self.ids[k].active = False
 
 
 class ThirdScreen(Screen):
-    
+
 
     def __init__(self, **kwargs):
         super(ThirdScreen, self).__init__(**kwargs)
@@ -178,9 +184,10 @@ class ThirdScreen(Screen):
         sm = self.manager
         sm.current = 'result'
 
-    def convert2i(self):
+    def convert2i(self, text):
         sm = self.manager
         sm.current = 'info'
+        
 
 class InfoScreen(Screen):
     def __init__(self, **kwargs):

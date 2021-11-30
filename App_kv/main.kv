@@ -87,7 +87,8 @@
             pos: self.pos
             size: self.size
             source: "testlogo.jpg"
-    on_leave: root.reset_checkbox()
+    on_leave: 
+        root.reset_all()
 
 
     
@@ -218,7 +219,7 @@
                     pos: self.pos
                     size: self.size
             id: recom1
-            text: "첫번째 추천지역 ->"
+            text: ""
             font_name: './HMKMRHD.ttf'
             on_press: root.convert2t(self.text)
             
@@ -231,7 +232,7 @@
                     pos: self.pos
                     size: self.size
             id: recom2
-            text: "두번째 추천지역 ->"
+            text: ""
             font_name: './HMKMRHD.ttf'
             on_press: root.convert2t(self.text)    
 
@@ -243,7 +244,7 @@
                     pos: self.pos
                     size: self.size
             id: recom3
-            text: "세번째 추천지역 ->"
+            text: ""
             font_name: './HMKMRHD.ttf'
             on_press: root.convert2t(self.text) 
 
@@ -255,7 +256,7 @@
                     pos: self.pos
                     size: self.size
             id: recom4
-            text: "네번째 추천지역 ->"
+            text: ""
             font_name: './HMKMRHD.ttf'
             on_press: root.convert2t(self.text) 
 
@@ -267,7 +268,7 @@
                     pos: self.pos
                     size: self.size
             id: recom5
-            text: "다섯번째 추천지역 ->"
+            text: ""
             font_name: './HMKMRHD.ttf'
             on_press: root.convert2t(self.text) 
 
@@ -337,6 +338,10 @@
 #            text:'관광지 설명'
 #            font_name: './HMKMRHD.ttf'
 #            pos_hint: {'right':1}
+# 
+# ThirdScreen
+# GridLayout
+    
     #주요 관광지 리스트 
     GridLayout:
         id: tourrec
@@ -350,8 +355,8 @@
                 Rectangle:
                     pos: self.pos
                     size: self.size
-            id: tourrecom1
-            text: "주요관광지1 ->"
+            id: tourrec1
+            text: ""
             font_name: './HMKMRHD.ttf'    
         Label:
             canvas.before:
@@ -360,8 +365,8 @@
                 Rectangle:
                     pos: self.pos
                     size: self.size
-            id: tourrecom2
-            text: "주요관광지2 ->"
+            id: tourrec2
+            text: ""
             font_name: './HMKMRHD.ttf'   
 
         Label:
@@ -371,8 +376,8 @@
                 Rectangle:
                     pos: self.pos
                     size: self.size
-            id: tourrecom3
-            text: "주요관광지3 ->"
+            id: tourrec3
+            text: ""
             font_name: './HMKMRHD.ttf'
 
         Label:
@@ -382,8 +387,8 @@
                 Rectangle:
                     pos: self.pos
                     size: self.size
-            id: tourrecom4
-            text: "주요관광지4 ->"
+            id: tourrec4
+            text: ""
             font_name: './HMKMRHD.ttf' 
 
         Label:
@@ -393,8 +398,8 @@
                 Rectangle:
                     pos: self.pos
                     size: self.size
-            id: tourrecom5
-            text: "주요관광지5 ->"
+            id: tourrec5
+            text: ""
             font_name: './HMKMRHD.ttf'
 
 
@@ -411,8 +416,8 @@
                 Rectangle:
                     pos: self.pos
                     size: self.size
-            id: fesrecom1
-            text: "주요축제1 ->"
+            id: fesrec1
+            text: ""
             font_name: './HMKMRHD.ttf'    
         Label:
             canvas.before:
@@ -421,8 +426,8 @@
                 Rectangle:
                     pos: self.pos
                     size: self.size
-            id: fesrecom2
-            text: "주요축제2 ->"
+            id: fesrec2
+            text: ""
             font_name: './HMKMRHD.ttf'   
 
         Label:
@@ -432,8 +437,8 @@
                 Rectangle:
                     pos: self.pos
                     size: self.size
-            id: fesrecom3
-            text: "주요축제3 ->"
+            id: fesrec3
+            text: ""
             font_name: './HMKMRHD.ttf'
 
         Label:
@@ -443,8 +448,8 @@
                 Rectangle:
                     pos: self.pos
                     size: self.size
-            id: fesrecom4
-            text: "주요축제4 ->"
+            id: fesrec4
+            text: ""
             font_name: './HMKMRHD.ttf' 
 
         Label:
@@ -454,10 +459,16 @@
                 Rectangle:
                     pos: self.pos
                     size: self.size
-            id: fesrecom5
-            text: "주요축제5 ->"
+            id: fesrec5
+            text: ""
             font_name: './HMKMRHD.ttf' 
 
+#
+#
+#
+# 
+# ThirdScreen
+# FloatLayout
     FloatLayout:
         Label:
             canvas.before:
@@ -495,53 +506,63 @@
             size_hint: 1, 0.05
             pos_hint: {'top':0.6, 'right': 1}
         
-        #주요축제 버튼
+        #주요관광 버튼
         Button:
             background_color: (0.2, 0.5, 0.8, 0.8)
-            id: ttrecom1
+            id: tourrecom1
             size_hint: (0.2, 0.04)
             pos_hint: {"top": 0.85, "right": 0.95}
-            text: "111 ->"
+            text: "이동"
+            font_name: './HMKMRHD.ttf'
+            disabled: True
             on_press:
                 root.convert2i()
                 root.manager.transition.direction = 'up'
 
         Button:
             background_color: (0.2, 0.5, 0.8, 0.8)
-            id: ttrecom2
+            id: tourrecom2
             size_hint: (0.2, 0.04)
             pos_hint: {"top": 0.81, "right": 0.95}
-            text: "222 ->"
+            text: "이동"
+            font_name: './HMKMRHD.ttf'
+            disabled: True
             on_press:
                 root.convert2i()
                 root.manager.transition.direction = 'up'
 
         Button:
             background_color: (0.2, 0.5, 0.8, 0.8)
-            id: ttrecom3
+            id: tourrecom3
             size_hint: (0.2, 0.04)
             pos_hint: {"top": 0.77, "right": 0.95}
-            text: "333 ->"
+            text: "이동"
+            font_name: './HMKMRHD.ttf'
+            disabled: True
             on_press:
                 root.convert2i()
                 root.manager.transition.direction = 'up'
 
         Button:
             background_color: (0.2, 0.5, 0.8, 0.8)
-            id: ttrecom4
+            id: tourrecom4
             size_hint: (0.2, 0.04)
             pos_hint: {"top": 0.73, "right": 0.95}
-            text: "444 ->"
+            text: "이동"
+            font_name: './HMKMRHD.ttf'
+            disabled: True
             on_press:
                 root.convert2i()
                 root.manager.transition.direction = 'up'
         
         Button:
             background_color: (0.2, 0.5, 0.8, 0.8)
-            id: ttrecom5
+            id: tourrecom5
             size_hint: (0.2, 0.04)
             pos_hint: {"top": 0.69, "right": 0.95}
-            text: "555 ->"
+            text: "이동"
+            font_name: './HMKMRHD.ttf'
+            disabled: True
             on_press:
                 root.convert2i()
                 root.manager.transition.direction = 'up'
@@ -551,7 +572,9 @@
             id: fesrecom1
             size_hint: (0.2, 0.04)
             pos_hint: {"top": 0.55, "right": 0.95}
-            text: "111 ->"
+            text: "이동"
+            font_name: './HMKMRHD.ttf'
+            disabled: True
             on_press:
                 root.convert2i()
                 root.manager.transition.direction = 'up'
@@ -561,7 +584,9 @@
             id: fesrecom2
             size_hint: (0.2, 0.04)
             pos_hint: {"top": 0.51, "right": 0.95}
-            text: "222 ->"
+            text: "이동"
+            font_name: './HMKMRHD.ttf'
+            disabled: True
             on_press:
                 root.convert2i()
                 root.manager.transition.direction = 'up'
@@ -571,7 +596,9 @@
             id: fesrecom3
             size_hint: (0.2, 0.04)
             pos_hint: {"top": 0.47, "right": 0.95}
-            text: "333 ->"
+            text: "이동"
+            font_name: './HMKMRHD.ttf'
+            disabled: True
             on_press:
                 root.convert2i()
                 root.manager.transition.direction = 'up'
@@ -581,7 +608,9 @@
             id: fesrecom4
             size_hint: (0.2, 0.04)
             pos_hint: {"top": 0.43, "right": 0.95}
-            text: "444 ->"
+            text: "이동"
+            font_name: './HMKMRHD.ttf'
+            disabled: True
             on_press:
                 root.convert2i()
                 root.manager.transition.direction = 'up'
@@ -591,7 +620,9 @@
             id: fesrecom5
             size_hint: (0.2, 0.04)
             pos_hint: {"top": 0.39, "right": 0.95}
-            text: "555 ->"
+            text: "이동"
+            font_name: './HMKMRHD.ttf'
+            disabled: True
             on_press:
                 root.convert2i()
                 root.manager.transition.direction = 'up'           

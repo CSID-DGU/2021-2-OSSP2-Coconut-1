@@ -8,6 +8,6 @@ def get_lm(region):
     data = json.loads(text)
     return data['landmarks']
 
-"""
-print(get_lm("경기_군포시"))
-"""
+'''
+print(get_lm("경기_오산시"))
+'''
