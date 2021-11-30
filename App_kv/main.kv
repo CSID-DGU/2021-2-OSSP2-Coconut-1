@@ -1,13 +1,33 @@
-
+#: import FadeTransition kivy.uix.screenmanager.FadeTransition
+#: import NoTransition kivy.uix.screenmanager.NoTransition
+#: import SlideTransition kivy.uix.screenmanager.SlideTransition
+#: import CardTransition kivy.uix.screenmanager.CardTransition
+#: import SwapTransition kivy.uix.screenmanager.SwapTransition
+#: import FallOutTransition kivy.uix.screenmanager.FallOutTransition
+#: import RiseInTransition kivy.uix.screenmanager.RiseInTransition
 
 <WindowManager>:
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    transition: SlideTransition()
     MainScreen:
+        name: 'main'
+        id: 'main_screen'
     ResultScreen:
+        name: 'result'
+        id: 'result_screen'
     ThirdScreen:
-    InfoScreen:
+        name: 'third'
+        id: 'third_screen'
+    InfoScreen:         
+        name: 'info'
+        id: 'info_screen'
 
 <MainScreen>:
-    name:'main'
     canvas.before:
         Rectangle:
             pos: self.pos
@@ -47,6 +67,7 @@
             font_name: './HMKMRHD.ttf'
             on_press:
                 root.convert2r()
+                root.manager.transition.direction = 'left'
                 root.manager.get_screen('result').ids.CityState.text = root.ids.main_drop.text + '-' + root.ids.sub_drop.text
                 
                 
@@ -61,12 +82,12 @@
     
 
 <ResultScreen>:
-    name:'result'
     canvas.before:
         Rectangle:
             pos: self.pos
             size: self.size
             source: "testlogo.jpg"
+    on_leave: root.reset_checkbox()
 
 
     
@@ -257,7 +278,9 @@
             text: "메인화면으로"
             font_name: './HMKMRHD.ttf'
             background_color: 0.2, 0.2, 0.5, 0.8   
-            on_press: root.convert2m()
+            on_press: 
+                root.convert2m()
+                root.manager.transition.direction = 'right'
 
         Button:
             size_hint: (0.3, 0.1)
@@ -294,7 +317,6 @@
 
 
 <ThirdScreen>:
-    name:'third'
     canvas.before:
         Rectangle:
             pos: self.pos
@@ -315,7 +337,7 @@
 #            text:'관광지 설명'
 #            font_name: './HMKMRHD.ttf'
 #            pos_hint: {'right':1}
-
+    #주요 관광지 리스트 
     GridLayout:
         id: tourrec
         rows: 5
@@ -373,7 +395,69 @@
                     size: self.size
             id: tourrecom5
             text: "주요관광지5 ->"
+            font_name: './HMKMRHD.ttf'
+
+
+    #주요 축제 리스트
+    GridLayout:
+        id: fesrec1
+        rows: 5
+        size_hint: 0.75, 0.2
+        pos_hint: {"top": 0.55, "right": 0.75}
+        Label:
+            canvas.before:
+                Color:
+                    rgba: 0.2, 0.2, 0.2, 0.8
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            id: fesrecom1
+            text: "주요축제1 ->"
+            font_name: './HMKMRHD.ttf'    
+        Label:
+            canvas.before:
+                Color:
+                    rgba: 0.2, 0.2, 0.2, 0.8
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            id: fesrecom2
+            text: "주요축제2 ->"
+            font_name: './HMKMRHD.ttf'   
+
+        Label:
+            canvas.before:
+                Color:
+                    rgba: 0.2, 0.2, 0.2, 0.8
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            id: fesrecom3
+            text: "주요축제3 ->"
+            font_name: './HMKMRHD.ttf'
+
+        Label:
+            canvas.before:
+                Color:
+                    rgba: 0.2, 0.2, 0.2, 0.8
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            id: fesrecom4
+            text: "주요축제4 ->"
             font_name: './HMKMRHD.ttf' 
+
+        Label:
+            canvas.before:
+                Color:
+                    rgba: 0.2, 0.2, 0.2, 0.8
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            id: fesrecom5
+            text: "주요축제5 ->"
+            font_name: './HMKMRHD.ttf' 
+
     FloatLayout:
         Label:
             canvas.before:
@@ -396,9 +480,22 @@
                     size: self.size
             text: "주요 관광지"
             font_name: './HMKMRHD.ttf'
-            size_hint: 0.75, 0.05
-            pos_hint: {'top':0.9, 'right': 0.75}
+            size_hint: 1, 0.05
+            pos_hint: {'top':0.9, 'right': 1}
 
+        Label:
+            canvas.before:
+                Color:
+                    rgba: 0.2, 0.2, 0.3, 0.6
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            text: "주요 축제"
+            font_name: './HMKMRHD.ttf'
+            size_hint: 1, 0.05
+            pos_hint: {'top':0.6, 'right': 1}
+        
+        #주요축제 버튼
         Button:
             background_color: (0.2, 0.5, 0.8, 0.8)
             id: ttrecom1
@@ -407,43 +504,99 @@
             text: "111 ->"
             on_press:
                 root.convert2i()
+                root.manager.transition.direction = 'up'
 
         Button:
             background_color: (0.2, 0.5, 0.8, 0.8)
-            id: ttrecom1
+            id: ttrecom2
             size_hint: (0.2, 0.04)
             pos_hint: {"top": 0.81, "right": 0.95}
             text: "222 ->"
             on_press:
                 root.convert2i()
+                root.manager.transition.direction = 'up'
 
         Button:
             background_color: (0.2, 0.5, 0.8, 0.8)
-            id: ttrecom1
+            id: ttrecom3
             size_hint: (0.2, 0.04)
             pos_hint: {"top": 0.77, "right": 0.95}
             text: "333 ->"
             on_press:
                 root.convert2i()
+                root.manager.transition.direction = 'up'
 
         Button:
             background_color: (0.2, 0.5, 0.8, 0.8)
-            id: ttrecom1
+            id: ttrecom4
             size_hint: (0.2, 0.04)
             pos_hint: {"top": 0.73, "right": 0.95}
             text: "444 ->"
             on_press:
                 root.convert2i()
+                root.manager.transition.direction = 'up'
         
         Button:
             background_color: (0.2, 0.5, 0.8, 0.8)
-            id: ttrecom1
+            id: ttrecom5
             size_hint: (0.2, 0.04)
             pos_hint: {"top": 0.69, "right": 0.95}
             text: "555 ->"
             on_press:
-                root.convert2i()             
+                root.convert2i()
+                root.manager.transition.direction = 'up'
+        #주요 축제 버튼 리스트
+        Button:
+            background_color: (0.2, 0.5, 0.8, 0.8)
+            id: fesrecom1
+            size_hint: (0.2, 0.04)
+            pos_hint: {"top": 0.55, "right": 0.95}
+            text: "111 ->"
+            on_press:
+                root.convert2i()
+                root.manager.transition.direction = 'up'
 
+        Button:
+            background_color: (0.2, 0.5, 0.8, 0.8)
+            id: fesrecom2
+            size_hint: (0.2, 0.04)
+            pos_hint: {"top": 0.51, "right": 0.95}
+            text: "222 ->"
+            on_press:
+                root.convert2i()
+                root.manager.transition.direction = 'up'
+
+        Button:
+            background_color: (0.2, 0.5, 0.8, 0.8)
+            id: fesrecom3
+            size_hint: (0.2, 0.04)
+            pos_hint: {"top": 0.47, "right": 0.95}
+            text: "333 ->"
+            on_press:
+                root.convert2i()
+                root.manager.transition.direction = 'up'
+
+        Button:
+            background_color: (0.2, 0.5, 0.8, 0.8)
+            id: fesrecom4
+            size_hint: (0.2, 0.04)
+            pos_hint: {"top": 0.43, "right": 0.95}
+            text: "444 ->"
+            on_press:
+                root.convert2i()
+                root.manager.transition.direction = 'up'
+        
+        Button:
+            background_color: (0.2, 0.5, 0.8, 0.8)
+            id: fesrecom5
+            size_hint: (0.2, 0.04)
+            pos_hint: {"top": 0.39, "right": 0.95}
+            text: "555 ->"
+            on_press:
+                root.convert2i()
+                root.manager.transition.direction = 'up'           
+
+        #하단 스크린 이동 버튼
         Button:
             background_color: (0.2, 0.5, 0.8, 0.8)
             text:'메인화면으로'
@@ -460,22 +613,34 @@
             pos_hint: {'center_x': 0.75, 'center_y': 0.1}
             on_press: root.convert2r() 
 
+
+
 <InfoScreen>:
-    name: 'info'
     canvas.before:
         Rectangle:
             pos: self.pos
             size: self.size
             source: "testlogo.jpg"  
-    Label:
-        canvas.before:
-            Color:
-                rgba: 0.2, 0.2, 0.2, 0.8     
-            Rectangle:
-                pos: self.pos
-                size: self.size
-        id: rectourname
-        text: 'test'
-        font_name: './HMKMRHD.ttf'
-        size_hint: 1, 0.1
-        pos_hint: {'top':1, 'right': 1}
+
+    FloatLayout:
+        Label:
+            canvas.before:
+                Color:
+                    rgba: 0.2, 0.2, 0.2, 0.8     
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            id: rectourname
+            text: 'test'
+            font_name: './HMKMRHD.ttf'
+            size_hint: 1, 0.1
+            pos_hint: {'top':1, 'right': 1}
+
+        Button:
+            background_color: (0.2, 0.5, 0.8, 0.6)
+            text:'이전화면으로'
+            font_name: './HMKMRHD.ttf'
+            size_hint:(0.5, 0.1)
+            pos_hint: {'center_x': 0.75, 'center_y': 0.1}
+            on_press: 
+                root.convert2t()  

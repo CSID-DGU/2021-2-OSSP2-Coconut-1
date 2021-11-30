@@ -1,31 +1,19 @@
-
 import kivy
 from kivy.app import App 
 kivy.require('1.9.0')
-from kivy.uix.checkbox import CheckBox 
-from kivy.uix.dropdown  import DropDown
+from kivy.uix.checkbox import CheckBox
 from kivy.uix.label import Label
-from kivy.uix.floatlayout import FloatLayout
-from kivy.uix.button  import Button
-from kivy.uix.spinner  import Spinner, SpinnerOption
+from kivy.uix.spinner  import SpinnerOption
 from kivy.uix.popup import Popup
-from kivy.properties import ListProperty, BooleanProperty
-from kivy.properties import StringProperty
-from kivy.properties import ObjectProperty
-from kivy.core.window import Window
+from kivy.properties import ListProperty, ObjectProperty
 from kivy.uix.screenmanager import ScreenManager, Screen
-from kivy.lang import Builder
-from os.path import dirname
-from os.path import join
 import get_feature
 import get_region
-
-
-
+import get_festival
+import get_landmark
+import get_landmark_info
 
 fontName = './HMKMRHD.ttf'
-kv_file = 'test11.kv'
-Builder.load_file(join(dirname(__file__), kv_file)) 
 
 class WindowManager(ScreenManager):
     pass
@@ -126,6 +114,7 @@ size_hint=(None, None), size=(600, 400))
         sm = self.manager
         
         self.key_values.append(sm.get_screen('main').ids.main_drop.text + '_' + sm.get_screen('main').ids.sub_drop.text)
+
         if self.ids.chk_key1.active:
             self.key_values.append(self.ids.key1.text)
         if self.ids.chk_key2.active:
@@ -162,9 +151,21 @@ size_hint=(None, None), size=(600, 400))
             Region.clear()
             self.key_values.clear()
         
+    def reset_checkbox(self):
+        self.ids.chk_key1.active = False
+        self.ids.chk_key2.active = False
+        self.ids.chk_key3.active = False
+        self.ids.chk_key4.active = False
+        self.ids.chk_key5.active = False
+        self.ids.chk_key6.active = False
+        self.ids.chk_key7.active = False
+        self.ids.chk_key8.active = False
+        self.ids.chk_key9.active = False
+        self.ids.chk_key10.active = False
 
 
 class ThirdScreen(Screen):
+    
 
     def __init__(self, **kwargs):
         super(ThirdScreen, self).__init__(**kwargs)
@@ -185,14 +186,17 @@ class InfoScreen(Screen):
     def __init__(self, **kwargs):
         super(InfoScreen, self).__init__(**kwargs)
 
-sm = ScreenManager() # transition = NoTransition())
-sm.add_widget(MainScreen())
-sm.add_widget(ResultScreen())
-sm.add_widget(ThirdScreen())
-sm.add_widget(InfoScreen())
-       
+    def convert2t(self):
+        sm = self.manager
+        sm.current = 'third'
+
 class MainApp(App):
     def build(self):
+        sm = WindowManager()
+        sm.add_widget(MainScreen())
+        sm.add_widget(ResultScreen())
+        sm.add_widget(ThirdScreen())
+        sm.add_widget(InfoScreen())
         return sm
 
 if __name__ == '__main__':
