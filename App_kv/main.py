@@ -1,3 +1,4 @@
+
 import kivy
 from kivy.app import App 
 kivy.require('1.9.0')
@@ -25,8 +26,6 @@ import get_region
 fontName = './HMKMRHD.ttf'
 kv_file = 'test11.kv'
 Builder.load_file(join(dirname(__file__), kv_file)) 
-
-Window.size = (600, 800)
 
 class WindowManager(ScreenManager):
     pass
@@ -81,7 +80,7 @@ class MainScreen(Screen):
     def convert2r(self):
         sm = self.manager
         popup = Popup(title ='Alert!!', content=Label(text='지역을 선택해주세요!',font_name = fontName),
-size_hint=(None, None), size=(400, 200))
+size_hint=(None, None), size=(600, 400))
         if self.ids.sub_drop.text =='시/군/구 선택' or self.ids.main_drop.text == self.ids.sub_drop.text:
             popup.open()
         else:
@@ -110,7 +109,7 @@ class ResultScreen(Screen):
     key_values=ListProperty()
     region = ListProperty()
     popup = Popup(title ='Alert!!', content=Label(text='최소한 하나의 키워드를 선택해 주세요!',font_name = fontName),
-size_hint=(None, None), size=(400, 200))
+size_hint=(None, None), size=(600, 400))
 
     #screen change
     def convert2m(self):
@@ -120,7 +119,7 @@ size_hint=(None, None), size=(400, 200))
 
     def convert2t(self,text):
         sm = self.manager
-        sm.get_screen('third').ids.CityState2.text = text
+        sm.get_screen('third').ids.CityState2.text ='선택하신 여행지 ' +  text + '(은)는 ...'
         sm.current = 'third'
 
     def get_keyval(self):
@@ -149,6 +148,7 @@ size_hint=(None, None), size=(400, 200))
             self.key_values.append(self.ids.key10.text)
         
         if len(self.key_values)==1:
+            self.key_values.clear()
             self.popup.open()
         else:
             Region = get_region.get_r(self.key_values)
@@ -158,7 +158,6 @@ size_hint=(None, None), size=(400, 200))
             self.ids.recom3.text=Region[2]
             self.ids.recom4.text=Region[3]
             self.ids.recom5.text=Region[4]
-
             #추천지역에 값 할당해준후 배열 초기화
             Region.clear()
             self.key_values.clear()
@@ -178,15 +177,22 @@ class ThirdScreen(Screen):
         sm = self.manager
         sm.current = 'result'
 
+    def convert2i(self):
+        sm = self.manager
+        sm.current = 'info'
+
+class InfoScreen(Screen):
+    def __init__(self, **kwargs):
+        super(InfoScreen, self).__init__(**kwargs)
 
 sm = ScreenManager() # transition = NoTransition())
 sm.add_widget(MainScreen())
 sm.add_widget(ResultScreen())
 sm.add_widget(ThirdScreen())
+sm.add_widget(InfoScreen())
        
 class MainApp(App):
     def build(self):
-        
         return sm
 
 if __name__ == '__main__':

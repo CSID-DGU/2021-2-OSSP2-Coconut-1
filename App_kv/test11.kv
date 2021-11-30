@@ -4,6 +4,7 @@
     MainScreen:
     ResultScreen:
     ThirdScreen:
+    InfoScreen:
 
 <MainScreen>:
     name:'main'
@@ -300,10 +301,26 @@
             size: self.size
             source: "testlogo.jpg"  
 
-    ScrollView:
-        do_scroll_x: False
-        do_scroll_y: True
-        pos_hint: {'top': 0.85}
+#    ScrollView:
+#        do_scroll_x: False
+#        do_scroll_y: True
+#        pos_hint: {'top': 0.85}
+#        Label:
+#            canvas.before:
+#                Color:
+#                    rgba: 0.2, 0.2, 0.2, 0.8
+#                Rectangle:
+#                    pos: self.pos
+#                    size: self.size
+#            text:'관광지 설명'
+#            font_name: './HMKMRHD.ttf'
+#            pos_hint: {'right':1}
+
+    GridLayout:
+        id: tourrec
+        rows: 5
+        size_hint: 0.75, 0.2
+        pos_hint: {"top": 0.85, "right": 0.75}
         Label:
             canvas.before:
                 Color:
@@ -311,10 +328,52 @@
                 Rectangle:
                     pos: self.pos
                     size: self.size
-            text:'관광지 설명'
-            font_name: './HMKMRHD.ttf'
-            pos_hint: {'right':1}
+            id: tourrecom1
+            text: "주요관광지1 ->"
+            font_name: './HMKMRHD.ttf'    
+        Label:
+            canvas.before:
+                Color:
+                    rgba: 0.2, 0.2, 0.2, 0.8
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            id: tourrecom2
+            text: "주요관광지2 ->"
+            font_name: './HMKMRHD.ttf'   
 
+        Label:
+            canvas.before:
+                Color:
+                    rgba: 0.2, 0.2, 0.2, 0.8
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            id: tourrecom3
+            text: "주요관광지3 ->"
+            font_name: './HMKMRHD.ttf'
+
+        Label:
+            canvas.before:
+                Color:
+                    rgba: 0.2, 0.2, 0.2, 0.8
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            id: tourrecom4
+            text: "주요관광지4 ->"
+            font_name: './HMKMRHD.ttf' 
+
+        Label:
+            canvas.before:
+                Color:
+                    rgba: 0.2, 0.2, 0.2, 0.8
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            id: tourrecom5
+            text: "주요관광지5 ->"
+            font_name: './HMKMRHD.ttf' 
     FloatLayout:
         Label:
             canvas.before:
@@ -328,6 +387,62 @@
             font_name: './HMKMRHD.ttf'
             size_hint: 1, 0.1
             pos_hint: {'top':1, 'right': 1}
+        Label:
+            canvas.before:
+                Color:
+                    rgba: 0.2, 0.2, 0.3, 0.6
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            text: "주요 관광지"
+            font_name: './HMKMRHD.ttf'
+            size_hint: 0.75, 0.05
+            pos_hint: {'top':0.9, 'right': 0.75}
+
+        Button:
+            background_color: (0.2, 0.5, 0.8, 0.8)
+            id: ttrecom1
+            size_hint: (0.2, 0.04)
+            pos_hint: {"top": 0.85, "right": 0.95}
+            text: "111 ->"
+            on_press:
+                root.convert2i()
+
+        Button:
+            background_color: (0.2, 0.5, 0.8, 0.8)
+            id: ttrecom1
+            size_hint: (0.2, 0.04)
+            pos_hint: {"top": 0.81, "right": 0.95}
+            text: "222 ->"
+            on_press:
+                root.convert2i()
+
+        Button:
+            background_color: (0.2, 0.5, 0.8, 0.8)
+            id: ttrecom1
+            size_hint: (0.2, 0.04)
+            pos_hint: {"top": 0.77, "right": 0.95}
+            text: "333 ->"
+            on_press:
+                root.convert2i()
+
+        Button:
+            background_color: (0.2, 0.5, 0.8, 0.8)
+            id: ttrecom1
+            size_hint: (0.2, 0.04)
+            pos_hint: {"top": 0.73, "right": 0.95}
+            text: "444 ->"
+            on_press:
+                root.convert2i()
+        
+        Button:
+            background_color: (0.2, 0.5, 0.8, 0.8)
+            id: ttrecom1
+            size_hint: (0.2, 0.04)
+            pos_hint: {"top": 0.69, "right": 0.95}
+            text: "555 ->"
+            on_press:
+                root.convert2i()             
 
         Button:
             background_color: (0.2, 0.5, 0.8, 0.8)
@@ -345,3 +460,22 @@
             pos_hint: {'center_x': 0.75, 'center_y': 0.1}
             on_press: root.convert2r() 
 
+<InfoScreen>:
+    name: 'info'
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: "testlogo.jpg"  
+    Label:
+        canvas.before:
+            Color:
+                rgba: 0.2, 0.2, 0.2, 0.8     
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        id: rectourname
+        text: 'test'
+        font_name: './HMKMRHD.ttf'
+        size_hint: 1, 0.1
+        pos_hint: {'top':1, 'right': 1}
