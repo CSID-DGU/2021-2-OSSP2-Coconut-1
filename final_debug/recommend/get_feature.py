@@ -1,8 +1,7 @@
-import json, requests 
-import certifi
+import json, requests
 
 def get_f(region):
-    url = requests.get("https://powerful104.pythonanywhere.com/recomm/get_f?region="+region, verify = certifi.where())
+    url = requests.get("https://powerful104.pythonanywhere.com/recomm/get_f?region="+region, verify = False)
     text = url.text
     data = json.loads(text)
     return data['features']
