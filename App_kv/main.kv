@@ -324,20 +324,7 @@
             size: self.size
             source: "testlogo.jpg"  
 
-#    ScrollView:
-#        do_scroll_x: False
-#        do_scroll_y: True
-#        pos_hint: {'top': 0.85}
-#        Label:
-#            canvas.before:
-#                Color:
-#                    rgba: 0.2, 0.2, 0.2, 0.8
-#                Rectangle:
-#                    pos: self.pos
-#                    size: self.size
-#            text:'관광지 설명'
-#            font_name: './HMKMRHD.ttf'
-#            pos_hint: {'right':1}
+
 # 
 # ThirdScreen
 # GridLayout
@@ -470,6 +457,12 @@
 # ThirdScreen
 # FloatLayout
     FloatLayout:
+
+        Label:
+            id: reg_temp
+            text: ""
+            font_name: './HMKMRHD.ttf'
+            opacity: 0
         Label:
             canvas.before:
                 Color:
@@ -520,7 +513,7 @@
             font_name: './HMKMRHD.ttf'
             disabled: True
             on_press:
-                root.convert2i()
+                root.convert2il(root.ids.reg_temp.text, root.ids.tourrec1.text)
                 root.manager.transition.direction = 'up'
 
         Button:
@@ -532,7 +525,7 @@
             font_name: './HMKMRHD.ttf'
             disabled: True
             on_press:
-                root.convert2i()
+                root.convert2il(root.ids.reg_temp.text, root.ids.tourrec2.text)
                 root.manager.transition.direction = 'up'
 
         Button:
@@ -544,7 +537,7 @@
             font_name: './HMKMRHD.ttf'
             disabled: True
             on_press:
-                root.convert2i()
+                root.convert2il(root.ids.reg_temp.text, root.ids.tourrec3.text)
                 root.manager.transition.direction = 'up'
 
         Button:
@@ -556,7 +549,7 @@
             font_name: './HMKMRHD.ttf'
             disabled: True
             on_press:
-                root.convert2i()
+                root.convert2il(root.ids.reg_temp.text, root.ids.tourrec4.text)
                 root.manager.transition.direction = 'up'
         
         Button:
@@ -568,7 +561,7 @@
             font_name: './HMKMRHD.ttf'
             disabled: True
             on_press:
-                root.convert2i()
+                root.convert2il(root.ids.reg_temp.text, root.ids.tourrec5.text)
                 root.manager.transition.direction = 'up'
         #주요 축제 버튼 리스트
         Button:
@@ -580,7 +573,7 @@
             font_name: './HMKMRHD.ttf'
             disabled: True
             on_press:
-                root.convert2i()
+                root.convert2if(root.ids.reg_temp.text, root.ids.fesrec1.text)
                 root.manager.transition.direction = 'up'
 
         Button:
@@ -592,7 +585,7 @@
             font_name: './HMKMRHD.ttf'
             disabled: True
             on_press:
-                root.convert2i()
+                root.convert2if(root.ids.reg_temp.text, root.ids.fesrec2.text)
                 root.manager.transition.direction = 'up'
 
         Button:
@@ -604,7 +597,7 @@
             font_name: './HMKMRHD.ttf'
             disabled: True
             on_press:
-                root.convert2i()
+                root.convert2if(root.ids.reg_temp.text, root.ids.fesrec3.text)
                 root.manager.transition.direction = 'up'
 
         Button:
@@ -616,7 +609,7 @@
             font_name: './HMKMRHD.ttf'
             disabled: True
             on_press:
-                root.convert2i()
+                root.convert2if(root.ids.reg_temp.text, root.ids.fesrec4.text)
                 root.manager.transition.direction = 'up'
         
         Button:
@@ -628,7 +621,7 @@
             font_name: './HMKMRHD.ttf'
             disabled: True
             on_press:
-                root.convert2i()
+                root.convert2if(root.ids.reg_temp.text, root.ids.fesrec5.text)
                 root.manager.transition.direction = 'up'           
 
         #하단 스크린 이동 버튼
@@ -665,11 +658,37 @@
                 Rectangle:
                     pos: self.pos
                     size: self.size
-            id: rectourname
+            id: choose
             text: 'test'
             font_name: './HMKMRHD.ttf'
             size_hint: 1, 0.1
             pos_hint: {'top':1, 'right': 1}
+
+        Label:
+            canvas.before:
+                Color:
+                    rgba: 0.2, 0.2, 0.2, 0.8     
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            id: location
+            text: 'test11'
+            font_name: './HMKMRHD.ttf'
+            size_hint: 1, 0.1
+            pos_hint: {'top':0.8, 'right': 1}
+
+        Label:
+            canvas.before:
+                Color:
+                    rgba: 0.2, 0.2, 0.2, 0.8     
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            id: info
+            text: 'test22'
+            font_name: './HMKMRHD.ttf'
+            size_hint: 1, 0.5
+            pos_hint: {'top':0.7, 'right': 1}
 
         Button:
             background_color: (0.2, 0.5, 0.8, 0.6)

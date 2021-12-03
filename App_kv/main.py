@@ -12,6 +12,7 @@ import get_region
 import get_festival
 import get_landmark
 import get_landmark_info
+import get_festival_info
 
 fontName = './HMKMRHD.ttf'
 
@@ -104,7 +105,8 @@ size_hint=(None, None), size=(600, 400))
 
     def convert2t(self,t):
         sm = self.manager
-        sm.get_screen('third').ids.CityState2.text ='선택하신 여행지 ' +  t + '(은)는 ...'
+        sm.get_screen('third').ids.CityState2.text ='선택하신 여행지 ' + t + '(은)는 ...'
+        sm.get_screen('third').ids.reg_temp.text = t
         landmark = get_landmark.get_lm(t)
         festival = get_festival.get_fstv(t)
         ## 여기다가 third화면에 있는 추천관광지와 축제에 뿌려주는 코드 작성
@@ -178,8 +180,20 @@ class ThirdScreen(Screen):
         sm = self.manager
         sm.current = 'result'
 
-    def convert2i(self, region, text):
+    def convert2if(self, region, text):
         sm = self.manager
+        inf = get_festival_info.get_fstv_info(region, text)
+        sm.get_screen('info').ids.choose.text = text
+        sm.get_screen('info').ids.location.text = inf[1]
+        sm.get_screen('info').ids.info.text = inf[0]
+        sm.current = 'info'
+
+    def convert2il(self, region, text):
+        sm = self.manager
+        inf = get_landmark_info.get_lm_info(region, text)
+        sm.get_screen('info').ids.choose.text = text
+        sm.get_screen('info').ids.location.text = inf[1]
+        sm.get_screen('info').ids.info.text = inf[0]
         sm.current = 'info'
         
 
