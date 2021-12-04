@@ -65,6 +65,7 @@
             pos_hint: {'center_x': 0.8, 'center_y': 0.1}
             text: "제출"
             font_name: './HMKMRHD.ttf'
+            background_normal: 'Button2.jpg'
             on_press:
                 root.convert2r()
                 root.manager.transition.direction = 'left'
@@ -78,6 +79,7 @@
             pos_hint: {'center_x': 0.2, 'center_y': 0.1}
             text: "종료"
             font_name: './HMKMRHD.ttf'
+            background_normal: 'Button2.jpg'
             on_press: root.onExit()
     
 
@@ -278,7 +280,8 @@
             pos_hint: {'center_x': 0.2, 'center_y': 0.1}
             text: "메인화면으로"
             font_name: './HMKMRHD.ttf'
-            background_color: 0.2, 0.2, 0.5, 0.8   
+            background_color: 0.2, 0.2, 0.5, 0.8  
+            background_normal: 'Button2.jpg' 
             on_press: 
                 root.convert2m()
                 root.manager.transition.direction = 'right'
@@ -288,7 +291,8 @@
             pos_hint: {'center_x': 0.8, 'center_y': 0.1}
             text: "추천지역 보기"
             font_name: './HMKMRHD.ttf'
-            background_color: 0.2, 0.2, 0.5, 0.8   
+            background_color: 0.2, 0.2, 0.5, 0.8
+            background_normal: 'Button2.jpg'   
             on_press: 
                 root.get_keyval()
 
@@ -333,7 +337,7 @@
     GridLayout:
         id: tourrec
         rows: 5
-        size_hint: 0.75, 0.2
+        size_hint: 0.75, 0.3
         pos_hint: {"top": 0.85, "right": 0.75}
         Label:
             canvas.before:
@@ -394,8 +398,8 @@
     GridLayout:
         id: fesrec1
         rows: 5
-        size_hint: 0.75, 0.2
-        pos_hint: {"top": 0.55, "right": 0.75}
+        size_hint: 0.75, 0.3
+        pos_hint: {"top": 0.5, "right": 0.75}
         Label:
             canvas.before:
                 Color:
@@ -497,7 +501,7 @@
             text: "주요 축제"
             font_name: './HMKMRHD.ttf'
             size_hint: 1, 0.05
-            pos_hint: {'top':0.6, 'right': 1}
+            pos_hint: {'top':0.55, 'right': 1}
         
         #주요관광 버튼
         #
@@ -507,7 +511,7 @@
         Button:
             background_color: (0.2, 0.5, 0.8, 0.8)
             id: tourrecom1
-            size_hint: (0.2, 0.04)
+            size_hint: (0.2, 0.06)
             pos_hint: {"top": 0.85, "right": 0.95}
             text: "이동"
             font_name: './HMKMRHD.ttf'
@@ -519,8 +523,8 @@
         Button:
             background_color: (0.2, 0.5, 0.8, 0.8)
             id: tourrecom2
-            size_hint: (0.2, 0.04)
-            pos_hint: {"top": 0.81, "right": 0.95}
+            size_hint: (0.2, 0.06)
+            pos_hint: {"top": 0.79, "right": 0.95}
             text: "이동"
             font_name: './HMKMRHD.ttf'
             disabled: True
@@ -531,8 +535,8 @@
         Button:
             background_color: (0.2, 0.5, 0.8, 0.8)
             id: tourrecom3
-            size_hint: (0.2, 0.04)
-            pos_hint: {"top": 0.77, "right": 0.95}
+            size_hint: (0.2, 0.06)
+            pos_hint: {"top": 0.73, "right": 0.95}
             text: "이동"
             font_name: './HMKMRHD.ttf'
             disabled: True
@@ -543,8 +547,8 @@
         Button:
             background_color: (0.2, 0.5, 0.8, 0.8)
             id: tourrecom4
-            size_hint: (0.2, 0.04)
-            pos_hint: {"top": 0.73, "right": 0.95}
+            size_hint: (0.2, 0.06)
+            pos_hint: {"top": 0.67, "right": 0.95}
             text: "이동"
             font_name: './HMKMRHD.ttf'
             disabled: True
@@ -555,8 +559,8 @@
         Button:
             background_color: (0.2, 0.5, 0.8, 0.8)
             id: tourrecom5
-            size_hint: (0.2, 0.04)
-            pos_hint: {"top": 0.69, "right": 0.95}
+            size_hint: (0.2, 0.06)
+            pos_hint: {"top": 0.61, "right": 0.95}
             text: "이동"
             font_name: './HMKMRHD.ttf'
             disabled: True
@@ -567,8 +571,8 @@
         Button:
             background_color: (0.2, 0.5, 0.8, 0.8)
             id: fesrecom1
-            size_hint: (0.2, 0.04)
-            pos_hint: {"top": 0.55, "right": 0.95}
+            size_hint: (0.2, 0.06)
+            pos_hint: {"top": 0.5, "right": 0.95}
             text: "이동"
             font_name: './HMKMRHD.ttf'
             disabled: True
@@ -579,8 +583,8 @@
         Button:
             background_color: (0.2, 0.5, 0.8, 0.8)
             id: fesrecom2
-            size_hint: (0.2, 0.04)
-            pos_hint: {"top": 0.51, "right": 0.95}
+            size_hint: (0.2, 0.06)
+            pos_hint: {"top": 0.44, "right": 0.95}
             text: "이동"
             font_name: './HMKMRHD.ttf'
             disabled: True
@@ -591,8 +595,8 @@
         Button:
             background_color: (0.2, 0.5, 0.8, 0.8)
             id: fesrecom3
-            size_hint: (0.2, 0.04)
-            pos_hint: {"top": 0.47, "right": 0.95}
+            size_hint: (0.2, 0.06)
+            pos_hint: {"top": 0.38, "right": 0.95}
             text: "이동"
             font_name: './HMKMRHD.ttf'
             disabled: True
@@ -603,8 +607,8 @@
         Button:
             background_color: (0.2, 0.5, 0.8, 0.8)
             id: fesrecom4
-            size_hint: (0.2, 0.04)
-            pos_hint: {"top": 0.43, "right": 0.95}
+            size_hint: (0.2, 0.06)
+            pos_hint: {"top": 0.32, "right": 0.95}
             text: "이동"
             font_name: './HMKMRHD.ttf'
             disabled: True
@@ -615,8 +619,8 @@
         Button:
             background_color: (0.2, 0.5, 0.8, 0.8)
             id: fesrecom5
-            size_hint: (0.2, 0.04)
-            pos_hint: {"top": 0.39, "right": 0.95}
+            size_hint: (0.2, 0.06)
+            pos_hint: {"top": 0.26, "right": 0.95}
             text: "이동"
             font_name: './HMKMRHD.ttf'
             disabled: True
@@ -631,6 +635,7 @@
             font_name: './HMKMRHD.ttf'
             size_hint:(0.5, 0.1)
             pos_hint: {'center_x': 0.25, 'center_y': 0.1}
+            background_normal: 'Button2.jpg'
             on_press: root.convert2m()
 
         Button:
@@ -639,6 +644,7 @@
             font_name: './HMKMRHD.ttf'
             size_hint:(0.5, 0.1)
             pos_hint: {'center_x': 0.75, 'center_y': 0.1}
+            background_normal: 'Button2.jpg'
             on_press: root.convert2r() 
 
 
