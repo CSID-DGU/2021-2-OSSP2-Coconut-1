@@ -167,7 +167,8 @@ size_hint=(None, None), size=(600, 400))
 
 
 class ThirdScreen(Screen):
-
+    popup = Popup(title ='Alert!!', content=Label(text='죄송합니다 해당 지역에 대한 정보가 없네요',font_name = fontName),
+size_hint=(None, None), size=(600, 400))
 
     def __init__(self, **kwargs):
         super(ThirdScreen, self).__init__(**kwargs)
@@ -181,20 +182,31 @@ class ThirdScreen(Screen):
         sm.current = 'result'
 
     def convert2if(self, region, text):
+
         sm = self.manager
         inf = get_festival_info.get_fstv_info(region, text)
-        sm.get_screen('info').ids.choose.text = text
-        sm.get_screen('info').ids.location.text = inf[1]
-        sm.get_screen('info').ids.info.text = inf[0]
-        sm.current = 'info'
+        if type(inf[0]) == float and type(inf[1]) == float:
+            self.popup.open()
+        else :
+            if type(inf[1]) != float:
+                sm.get_screen('info').ids.location.text = '주소: ' + inf[1]
+            if type(inf[0]) != float:
+                sm.get_screen('info').ids.info.text = inf[0]    
+            sm.get_screen('info').ids.choose.text = text
+            sm.current = 'info'
 
     def convert2il(self, region, text):
         sm = self.manager
         inf = get_landmark_info.get_lm_info(region, text)
-        sm.get_screen('info').ids.choose.text = text
-        sm.get_screen('info').ids.location.text = inf[1]
-        sm.get_screen('info').ids.info.text = inf[0]
-        sm.current = 'info'
+        if type(inf[0]) == float and type(inf[1]) == float:
+            self.popup.open()
+        else :
+            if type(inf[1]) != float:
+                sm.get_screen('info').ids.location.text = '주소: ' + inf[1]
+            if type(inf[0]) != float:
+                sm.get_screen('info').ids.info.text = inf[0]    
+            sm.get_screen('info').ids.choose.text = text
+            sm.current = 'info'
         
 
 class InfoScreen(Screen):
