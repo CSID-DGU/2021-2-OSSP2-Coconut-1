@@ -8,7 +8,7 @@ def get_lm_info(region,landmark):
     data = json.loads(text)
     return [data['info'],data['address']]
 
-
+'''
 test= get_lm_info("경기_군포시","반월호수")
 
 
@@ -25,4 +25,4 @@ for i in range(len):
 
 
 
-print(test[0])
+print(test[0])'''

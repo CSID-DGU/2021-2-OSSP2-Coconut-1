@@ -38,7 +38,7 @@
         Spinner:
             id: main_drop
             size_hint: None, None
-            size: 300, 150
+            size: 275, 150
             pos_hint:{'top': 1}
             text: '도시 선택'
             background_normal: 'Button2.jpg'
@@ -51,7 +51,7 @@
         Spinner:
             id: sub_drop
             size_hint: None, None
-            size: 300, 150
+            size: 275, 150
             pos_hint:{'top': 1}
             text: '시/군/구 선택'
             background_normal: 'Button2.jpg'
@@ -90,9 +90,6 @@
             pos: self.pos
             size: self.size
             source: "background.jpg"
-    on_leave: 
-        root.reset_all()
-
 
     
     GridLayout:

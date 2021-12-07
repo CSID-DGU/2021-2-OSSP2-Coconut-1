@@ -100,6 +100,7 @@ size_hint=(None, None), size=(600, 400))
     #screen change
     def convert2m(self):
         sm = self.manager
+        sm.get_screen('result').reset_all()
         sm.current = 'main'
         
 
@@ -175,6 +176,7 @@ size_hint=(None, None), size=(600, 400))
 
     def convert2m(self):
         sm = self.manager
+        sm.get_screen('result').reset_all()
         sm.current = 'main'
 
     def convert2r(self):
