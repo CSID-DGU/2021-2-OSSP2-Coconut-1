@@ -19,7 +19,7 @@
     ThirdScreen:
         name: 'third'
         id: 'third_screen'
-    InfoScreen:         
+    InfoScreen:    
         name: 'info'
         id: 'info_screen'
 
@@ -630,8 +630,28 @@
             size_hint:(0.5, 0.1)
             pos_hint: {'center_x': 0.75, 'center_y': 0.1}
             background_normal: 'Button2.jpg'
-            on_press: 
-                root.convert2r() 
+            on_press:
+                root.convert2r()
+                root.ids.tourrec1.text=''
+                root.ids.tourrec2.text=''
+                root.ids.tourrec3.text=''
+                root.ids.tourrec4.text=''
+                root.ids.tourrec5.text=''
+                root.ids.fesrec1.text=''
+                root.ids.fesrec2.text=''
+                root.ids.fesrec3.text=''
+                root.ids.fesrec4.text=''
+                root.ids.fesrec5.text=''
+                root.ids.tourrecom1.disabled = True
+                root.ids.tourrecom2.disabled = True
+                root.ids.tourrecom3.disabled = True
+                root.ids.tourrecom4.disabled = True
+                root.ids.tourrecom5.disabled = True
+                root.ids.fesrecom1.disabled = True
+                root.ids.fesrecom2.disabled = True
+                root.ids.fesrecom3.disabled = True
+                root.ids.fesrecom4.disabled = True
+                root.ids.fesrecom5.disabled = True
                 root.manager.transition.direction = 'right'
 
 
