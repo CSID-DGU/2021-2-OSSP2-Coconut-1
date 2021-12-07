@@ -94,7 +94,7 @@ class ResultScreen(Screen):
     landmark = ListProperty()
     festival = ListProperty()
 
-    popup = Popup(title ='Alert!!', content=Label(text='최소한 하나의 키워드를 선택해 주세요!',font_name = fontName),
+    popup = Popup(title ='Alert!!', content=Label(text='최소한 하나의 키워드를\n 선택해 주세요!',font_name = fontName),
 size_hint=(None, None), size=(600, 400))
 
     #screen change
@@ -191,7 +191,18 @@ size_hint=(None, None), size=(600, 400))
             if type(inf[1]) != float:
                 sm.get_screen('info').ids.location.text = '주소: ' + inf[1]
             if type(inf[0]) != float:
-                sm.get_screen('info').ids.info.text = inf[0]    
+                cnt = 0
+                le = len(inf[0])
+                for i in range(le):
+                    if inf[0][i] == " " and cnt > 20:
+                        L = list(inf[0])
+                        L[i] = "\n"
+                        inf[0]=''.join(L)
+                        cnt = 0
+                    else:
+                        cnt+=1
+                sm.get_screen('info').ids.info.text = inf[0]  
+
             sm.get_screen('info').ids.choose.text = text
             sm.current = 'info'
 
@@ -204,6 +215,16 @@ size_hint=(None, None), size=(600, 400))
             if type(inf[1]) != float:
                 sm.get_screen('info').ids.location.text = '주소: ' + inf[1]
             if type(inf[0]) != float:
+                cnt = 0
+                le = len(inf[0])
+                for i in range(le):
+                    if inf[0][i] == " " and cnt > 20:
+                        L = list(inf[0])
+                        L[i] = "\n"
+                        inf[0]=''.join(L)
+                        cnt = 0
+                    else:
+                        cnt+=1
                 sm.get_screen('info').ids.info.text = inf[0]    
             sm.get_screen('info').ids.choose.text = text
             sm.current = 'info'
