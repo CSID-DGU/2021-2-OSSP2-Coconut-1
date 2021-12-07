@@ -215,6 +215,8 @@ class InfoScreen(Screen):
 
     def convert2t(self):
         sm = self.manager
+        self.ids.location.text = '주소 정보를 가져오지 못했어요'
+        self.ids.info.text = '해당 지역/축제에 관한 정보를 가져오지 못했어요'
         sm.current = 'third'
 
 class MainApp(App):
